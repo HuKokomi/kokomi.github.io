@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta name="generator" content="Hugo 0.163.3"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kokomi个人博客 | kokomi_bolg</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '\\[', right: '\\]', display: true},  
+                        {left: '$', right: '$', display: false},     
+                        {left: '\\(', right: '\\)', display: false}  
+                    ]
+                });
+            }
+        });
+    </script>
+    <style>
+        .bg-red { background-color: #8C0000; }
+        .bg-blue { background-color: #1a3a5c; }
+        .text-red { color: #8C0000; }
+        .border-red { border-color: #8C0000; }
+        .text-pku-red { color: #8C0000; }
+        .border-pku-red { border-color: #8C0000; }
+        .bg-pku-red { background-color: #8C0000; }
+        .text-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+    </style>
+</head>
+
+<header class="fixed top-0 left-0 w-full z-50 text-white shadow-md bg-gradient-to-b from-[#8C0000]/80 to-[#7e0000]/10">
+    
+    <div class="text-xs py-2 px-8 flex justify-end space-x-4">
+        <a href="#" class="hover:text-purple-300 transition">个人简历</a>
+        <span class="text-white/50">|</span>
+        <a href="#" class="hover:text-purple-300 transition">联系邮箱</a>
+        <span class="text-white/50">|</span>
+        <a href="#" class="hover:text-purple-300 transition">下载中心</a>
+        <span class="text-white/50">|</span>
+        <a href="#" class="hover:text-purple-300 transition">English</a>
+    </div>
+    
+    <nav class="px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <span class="text-2xl font-serif font-bold text-white tracking-wider">kokomi博客</span>
+        </div>
+        <div class="hidden md:flex space-x-10 font-medium text-white/90">
+            <a href="/" class="hover:text-purple-300 pb-1 font-bold">首页</a>
+            <a href="/posts/" class="hover:text-purple-300 pb-1 font-bold">学术动态</a>
+            <a href="/research/" class="hover:text-purple-300 pb-1 font-bold">科研动态</a>
+            <a href="/competition/" class="hover:text-purple-300 pb-1 font-bold">竞赛动态</a>
+            <a href="/about/" class="hover:text-purple-300 pb-1 font-bold">关于我</a>
+        </div>
+    </nav>
+</header>
+
+    
+    <main class="flex-grow">
+        
+
+
+
+
+<div class="relative w-full h-screen bg-gray-900 overflow-hidden">
+    <div class="swiper heroSwiper w-full h-full">
+        <div class="swiper-wrapper">
+            
+            <div class="swiper-slide relative">
+                <img src="/db_imsges/image/abc8318cc20d78272b169438671575e9.jpg"
+                     class="absolute inset-0 w-full h-full object-cover opacity-70"
+                     alt="北京大学校园风光">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/0 to-black/10"></div>
+            </div>
+            
+            <div class="swiper-slide relative">
+                <img src="/db_imsges/150040010009/e5c7bd3624d9df584e7e5b2b160b2591.jpg"
+                     class="absolute inset-0 w-full h-full object-cover opacity-70"
+                     alt="实验室科研场景">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/0 to-black/10"></div>
+            </div>
+            
+            <div class="swiper-slide relative">
+                <img src="/db_imsges/150040010009/d457e14462fcae6d64fa664d62394ccb.jpg"
+                     class="absolute inset-0 w-full h-full object-cover opacity-70"
+                     alt="学术活动">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/0 to-black/10"></div>
+            </div>
+        </div>
+        
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev !text-white/70 hover:!text-white"></div>
+        <div class="swiper-button-next !text-white/70 hover:!text-white"></div>
+    </div>
+</div>
+
+
+
+
+<div id="panels" class="max-w-[1800px] mx-auto px-4 py-16">
+
+    
+    <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 mb-20">
+        <div class="lg:w-2/5 flex-shrink-0">
+            <div class="mb-6">
+                <span class="text-sm font-semibold text-[#A31F34] tracking-widest uppercase">Competition</span>
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 mt-1">竞赛成果</h2>
+                <p class="text-gray-500 text-sm leading-relaxed mt-3 max-w-md">
+                    在国内外高水平学科竞赛中屡获殊荣，以创新实力与团队协作不断突破技术边界。
+                </p>
+            </div>
+            
+            <div id="compList" class="space-y-2 relative">
+                
+                
+                    
+                    
+                    <a href="http://localhost:1313/competition/tzb-2025-nj/" 
+                       class="competition-item group flex items-center gap-4 p-3 rounded-lg transition-all duration-300 border border-transparent hover:bg-[#A31F34]/5 hover:border-[#A31F34]/20"
+                       data-image="/competition/tiaozhanbei202502/3a9b6093e13d3d1a70d0ff7ff2f85a5b.jpg"
+                       data-title="便携式慢阻肺AI监测设备荣获“挑战杯”人工智能&#43;专项赛全国特等奖"
+                       data-summary="项目“肺腑之研——便携式慢阻肺AI监测设备开创者”荣获第十八届“挑战杯”全国大学生课外学术科技作品竞赛“人工智能&#43;”专项赛全国特等奖及第十二届“青苗杯”安徽省项 …"
+                       data-link="http://localhost:1313/competition/tzb-2025-nj/">
+                        
+                        <div class="w-20 h-16 flex-shrink-0 rounded-md overflow-hidden bg-gray-200 relative">
+                            
+                                <img src="/competition/tiaozhanbei202502/3a9b6093e13d3d1a70d0ff7ff2f85a5b.jpg" alt="便携式慢阻肺AI监测设备荣获“挑战杯”人工智能&#43;专项赛全国特等奖" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            
+                            
+                            <div class="absolute inset-0 bg-white/0 transition-colors duration-300 group-hover:bg-white/10"></div>
+                        </div>
+
+                        
+                        <div class="text-content flex-1 min-w-0 transition-transform duration-400 ease-out">
+                            <div class="text-title text-sm font-medium text-gray-800 transition-colors duration-300 line-clamp-2">便携式慢阻肺AI监测设备荣获“挑战杯”人工智能&#43;专项赛全国特等奖</div>
+                            <div class="text-xs text-gray-400 mt-0.5 transition-colors duration-300">2026-06-20</div>
+                        </div>
+                    </a>
+                    
+                    
+                    <a href="http://localhost:1313/competition/tzb2024-xa/" 
+                       class="competition-item group flex items-center gap-4 p-3 rounded-lg transition-all duration-300 border border-transparent hover:bg-[#A31F34]/5 hover:border-[#A31F34]/20"
+                       data-image="/db_imsges/competition/8165cd63f4911e9ca028234b655a4f87.jpg"
+                       data-title="灯高碳远——新一代智慧路灯助力城市低碳建设荣获“挑战杯”全国铜奖"
+                       data-summary="项目“灯高&rsquo;碳&rsquo;远”荣获第十四届“挑战杯”中国大学生创业计划竞赛国家级铜奖、安徽省金奖，通过自研“耀心”算法、分离式电源与快捷维修系统， …"
+                       data-link="http://localhost:1313/competition/tzb2024-xa/">
+                        
+                        <div class="w-20 h-16 flex-shrink-0 rounded-md overflow-hidden bg-gray-200 relative">
+                            
+                                <img src="/db_imsges/competition/8165cd63f4911e9ca028234b655a4f87.jpg" alt="灯高碳远——新一代智慧路灯助力城市低碳建设荣获“挑战杯”全国铜奖" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            
+                            
+                            <div class="absolute inset-0 bg-white/0 transition-colors duration-300 group-hover:bg-white/10"></div>
+                        </div>
+
+                        
+                        <div class="text-content flex-1 min-w-0 transition-transform duration-400 ease-out">
+                            <div class="text-title text-sm font-medium text-gray-800 transition-colors duration-300 line-clamp-2">灯高碳远——新一代智慧路灯助力城市低碳建设荣获“挑战杯”全国铜奖</div>
+                            <div class="text-xs text-gray-400 mt-0.5 transition-colors duration-300">2026-06-20</div>
+                        </div>
+                    </a>
+                    
+                    
+                    <a href="http://localhost:1313/competition/tzb2025-cq/" 
+                       class="competition-item group flex items-center gap-4 p-3 rounded-lg transition-all duration-300 border border-transparent hover:bg-[#A31F34]/5 hover:border-[#A31F34]/20"
+                       data-image="/competition/tiaozhenbei202501/0938eb692da1fb69fb3b2cf5763b682c.jpg"
+                       data-title="指导科创项目荣获第十八届“挑战杯”揭榜挂帅专项赛全国奖项"
+                       data-summary="在第十八届“挑战杯”全国大学生课外学术科技作品竞赛“揭榜挂帅”专项赛中，本人参与指导的三个项目分别获得全国二等奖和两项优胜奖，涉及量子多体系统、低空雷达识别与多 …"
+                       data-link="http://localhost:1313/competition/tzb2025-cq/">
+                        
+                        <div class="w-20 h-16 flex-shrink-0 rounded-md overflow-hidden bg-gray-200 relative">
+                            
+                                <img src="/competition/tiaozhenbei202501/0938eb692da1fb69fb3b2cf5763b682c.jpg" alt="指导科创项目荣获第十八届“挑战杯”揭榜挂帅专项赛全国奖项" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            
+                            
+                            <div class="absolute inset-0 bg-white/0 transition-colors duration-300 group-hover:bg-white/10"></div>
+                        </div>
+
+                        
+                        <div class="text-content flex-1 min-w-0 transition-transform duration-400 ease-out">
+                            <div class="text-title text-sm font-medium text-gray-800 transition-colors duration-300 line-clamp-2">指导科创项目荣获第十八届“挑战杯”揭榜挂帅专项赛全国奖项</div>
+                            <div class="text-xs text-gray-400 mt-0.5 transition-colors duration-300">2026-06-20</div>
+                        </div>
+                    </a>
+                    
+                
+            </div>
+        </div>
+
+        
+        <div id="compBigImageContainer" class="lg:flex-1 min-h-[360px] lg:min-h-[420px] rounded-2xl overflow-hidden shadow-xl bg-gray-200 relative group cursor-pointer">
+            
+            
+            <div id="compBigImage" class="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-500 ease-in-out group-hover:scale-105" 
+                 style="background-image: url('/competition/tiaozhanbei202502/3a9b6093e13d3d1a70d0ff7ff2f85a5b.jpg');">
+            </div>
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
+            
+            <div class="absolute bottom-6 left-6 right-6 text-white z-10 transition-all duration-300" id="compBigText">
+                
+                    <h3 class="text-xl lg:text-2xl font-serif font-bold drop-shadow-md">便携式慢阻肺AI监测设备荣获“挑战杯”人工智能&#43;专项赛全国特等奖</h3>
+                    <p class="text-sm text-white/90 drop-shadow-sm mt-1 line-clamp-2">项目“肺腑之研——便携式慢阻肺AI监测设备开创者”荣获第十八届“挑战杯”全国大学生课外学术科技作品竞赛“人工智能+”专项赛全国特等奖及第十二届“青苗杯”安徽省项目资本对接活动省级银奖。项目自研DDS调频检测电路与超声映射模型，实现全球首创的COPD家庭智能监测。</p>
+                
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="section-block mb-16">
+        <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
+            <div class="flex items-center gap-3">
+                <span class="w-1 h-8 bg-[#A31F34] rounded-full"></span>
+                <div>
+                    <span class="text-xs font-semibold text-[#A31F34] tracking-widest uppercase">Research</span>
+                    <h2 class="text-2xl lg:text-3xl font-serif font-bold text-gray-900">学术科研</h2>
+                </div>
+            </div>
+            <a href="/research/" class="text-sm font-medium text-gray-400 hover:text-[#A31F34] transition-colors flex items-center group">
+                查看更多
+                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            
+                
+                <a href="http://localhost:1313/research/thesis/" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
+                    <div class="aspect-[16/9] bg-gray-200 overflow-hidden relative">
+                        
+                            <img src="/db_imsges/Research/e480f8c4-fda0-4d2d-880d-58a60730b4cf.png" alt="基于Carla的智能车辆跟车场景自适应巡航研究" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-serif font-bold text-gray-800 group-hover:text-[#A31F34] transition-colors line-clamp-2">基于Carla的智能车辆跟车场景自适应巡航研究</h3>
+                        <p class="text-sm text-gray-500 mt-1 line-clamp-2">本研究基于Carla仿真平台，设计并实现了模型预测控制（MPC）的分层自适应巡航系统，在典型跟车场景中验证了其在稳定性、速度跟踪精度和乘坐舒适性方面均显著优于传统PID控制。</p>
+                    </div>
+                </a>
+                
+            
+        </div>
+    </div>
+
+    
+    <div class="section-block mb-16">
+        <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
+            <div class="flex items-center gap-3">
+                <span class="w-1 h-8 bg-[#A31F34] rounded-full"></span>
+                <div>
+                    <span class="text-xs font-semibold text-[#A31F34] tracking-widest uppercase">Learning</span>
+                    <h2 class="text-2xl lg:text-3xl font-serif font-bold text-gray-900">学习笔记</h2>
+                </div>
+            </div>
+            <a href="/study/" class="text-sm font-medium text-gray-400 hover:text-[#A31F34] transition-colors flex items-center group">
+                查看更多
+                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            
+                <div class="col-span-3 text-center text-gray-400 py-8">
+                    <p>笔记正在积累中</p>
+                    <a href="/posts/" class="mt-1 inline-block text-[#A31F34] text-sm hover:underline">先看随笔 →</a>
+                </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="section-block mb-16">
+        <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
+            <div class="flex items-center gap-3">
+                <span class="w-1 h-8 bg-[#A31F34] rounded-full"></span>
+                <div>
+                    <span class="text-xs font-semibold text-[#A31F34] tracking-widest uppercase">Activities</span>
+                    <h2 class="text-2xl lg:text-3xl font-serif font-bold text-gray-900">学术活动</h2>
+                </div>
+            </div>
+            <a href="/activities/" class="text-sm font-medium text-gray-400 hover:text-[#A31F34] transition-colors flex items-center group">
+                查看更多
+                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            
+                <div class="col-span-3 text-center text-gray-400 py-8">
+                    <p>活动安排中</p>
+                    <a href="/posts/" class="mt-1 inline-block text-[#A31F34] text-sm hover:underline">先看随笔 →</a>
+                </div>
+            
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<div id="posts" class="py-16 bg-gray-50">
+    <div class="max-w-[1800px] mx-auto px-4">
+        <div class="border-b border-gray-200 pb-4 mb-8">
+            <div class="flex justify-between items-end">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900">📝 最新学术随笔</h2>
+                    <p class="text-sm text-gray-500 mt-2">思想碰撞，笔耕不辍</p>
+                </div>
+                <a href="/posts/" class="hidden sm:inline-flex items-center text-sm text-[#A31F34] hover:text-[#A31F34]/80 transition font-medium group">
+                    查看全部
+                    <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+        </div>
+        <div class="mt-8 text-center sm:hidden">
+            <a href="/posts/" class="inline-flex items-center text-sm text-[#A31F34] font-medium">查看全部 →</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const items = document.querySelectorAll('#compList .competition-item');
+        const bigImage = document.getElementById('compBigImage');
+        const bigImageContainer = document.getElementById('compBigImageContainer');
+        const bigTextContainer = document.getElementById('compBigText');
+
+        if (items.length === 0) return;
+
+        let currentIndex = 0;
+        let autoplayTimer = null;
+        const AUTOPLAY_INTERVAL = 3500; 
+
+        
+        function setActive(index) {
+            currentIndex = index;
+            
+            
+            items.forEach((el, i) => {
+                const isCurrent = i === index;
+                
+                
+                el.classList.toggle('bg-[#A31F34]/5', isCurrent);
+                el.classList.toggle('border-[#A31F34]/30', isCurrent);
+                
+                
+                const textWrap = el.querySelector('.text-content');
+                const title = el.querySelector('.text-title');
+                
+                if (textWrap) {
+                    
+                    isCurrent ? textWrap.classList.add('translate-x-2') : textWrap.classList.remove('translate-x-2');
+                }
+                if (title) {
+                    
+                    isCurrent ? title.classList.add('text-[#A31F34]') : title.classList.remove('text-[#A31F34]');
+                }
+            });
+
+            
+            const target = items[index];
+            if (target) {
+                const imgSrc = target.getAttribute('data-image');
+                const title = target.getAttribute('data-title');
+                const summary = target.getAttribute('data-summary');
+                const link = target.getAttribute('data-link');
+
+                
+                bigImage.style.opacity = '0.6';
+                setTimeout(() => {
+                    bigImage.style.backgroundImage = `url('${imgSrc}')`;
+                    bigImage.style.opacity = '1';
+                }, 150);
+
+                
+                bigImageContainer.onclick = () => location.href = link;
+
+                
+                if (bigTextContainer) {
+                    bigTextContainer.style.opacity = '0';
+                    setTimeout(() => {
+                        bigTextContainer.innerHTML = `
+                            <h3 class="text-xl lg:text-2xl font-serif font-bold drop-shadow-md mb-2">${title}</h3>
+                            <p class="text-sm text-white/90 drop-shadow-sm line-clamp-2">${summary}</p>
+                        `;
+                        bigTextContainer.style.opacity = '1';
+                    }, 150);
+                }
+            }
+        }
+
+        
+        function startAutoplay() {
+            stopAutoplay();
+            autoplayTimer = setInterval(() => {
+                let nextIndex = (currentIndex + 1) % items.length;
+                setActive(nextIndex);
+            }, AUTOPLAY_INTERVAL);
+        }
+
+        
+        function stopAutoplay() {
+            if (autoplayTimer) {
+                clearInterval(autoplayTimer);
+                autoplayTimer = null;
+            }
+        }
+
+        
+        items.forEach((item, index) => {
+            
+            item.addEventListener('mouseenter', function(e) {
+                if (currentIndex !== index) {
+                    setActive(index);
+                }
+                stopAutoplay();
+            });
+
+            
+            item.addEventListener('mouseleave', function(e) {
+                startAutoplay();
+            });
+        });
+
+        
+        bigImageContainer.addEventListener('mouseenter', stopAutoplay);
+        bigImageContainer.addEventListener('mouseleave', startAutoplay);
+
+        
+        setActive(0);
+        startAutoplay();
+    });
+</script>
+
+
+    </main>
+
+    
+    <footer class="bg-red text-white text-xs py-8 px-8 mt-12 text-center space-y-2">
+        <p class="font-serif tracking-widest text-sm">版权所有 © kokomi博客</p>
+        <p>地址：安徽省滁州市琅琊区</p>
+        <p>技术支持：Hugo + VS Code + Tailwind CSS</p>
+    </footer>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            new Swiper('.heroSwiper', {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true,
+                },
+            });
+        });
+    </script>
+</body>
+</html>

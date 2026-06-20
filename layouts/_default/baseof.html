@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} | kokomi_bolg</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Swiper 资源 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- KaTeX 样式 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <!-- KaTeX 核心库 -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <!-- KaTeX 自动渲染插件 -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '\\[', right: '\\]', display: true},  // 保留以防万一
+                        {left: '$', right: '$', display: false},     // 新增行内 $
+                        {left: '\\(', right: '\\)', display: false}  // 保留，但建议改用 $
+                    ]
+                });
+            }
+        });
+    </script>
+    <style>
+        .bg-red { background-color: #8C0000; }
+        .bg-blue { background-color: #1a3a5c; }
+        .text-red { color: #8C0000; }
+        .border-red { border-color: #8C0000; }
+        .text-pku-red { color: #8C0000; }
+        .border-pku-red { border-color: #8C0000; }
+        .bg-pku-red { background-color: #8C0000; }
+        .text-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+    </style>
+</head>
+
+<header class="fixed top-0 left-0 w-full z-50 text-white shadow-md bg-gradient-to-b from-[#8C0000]/80 to-[#7e0000]/10">
+    <!-- 工具链接行（右对齐） -->
+    <div class="text-xs py-2 px-8 flex justify-end space-x-4">
+        <a href="#" class="hover:text-purple-300 transition">个人简历</a>
+        <span class="text-white/50">|</span>
+        <a href="#" class="hover:text-purple-300 transition">联系邮箱</a>
+        <span class="text-white/50">|</span>
+        <a href="#" class="hover:text-purple-300 transition">下载中心</a>
+        <span class="text-white/50">|</span>
+        <a href="#" class="hover:text-purple-300 transition">English</a>
+    </div>
+    <!-- 主导航行 -->
+    <nav class="px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <span class="text-2xl font-serif font-bold text-white tracking-wider">kokomi博客</span>
+        </div>
+        <div class="hidden md:flex space-x-10 font-medium text-white/90">
+            <a href="/" class="hover:text-purple-300 pb-1 font-bold">首页</a>
+            <a href="/posts/" class="hover:text-purple-300 pb-1 font-bold">学术动态</a>
+            <a href="/research/" class="hover:text-purple-300 pb-1 font-bold">科研动态</a>
+            <a href="/competition/" class="hover:text-purple-300 pb-1 font-bold">竞赛动态</a>
+            <a href="/about/" class="hover:text-purple-300 pb-1 font-bold">关于我</a>
+        </div>
+    </nav>
+</header>
+
+    <!-- 主体内容区（移除顶部多余的 padding，因为导航已浮动） -->
+    <main class="flex-grow">
+        {{ block "main" . }}{{ end }}
+    </main>
+
+    <!-- 页脚保持不变（如有需要可继续保留） -->
+    <footer class="bg-red text-white text-xs py-8 px-8 mt-12 text-center space-y-2">
+        <p class="font-serif tracking-widest text-sm">版权所有 © kokomi博客</p>
+        <p>地址：安徽省滁州市琅琊区</p>
+        <p>技术支持：Hugo + VS Code + Tailwind CSS</p>
+    </footer>
+
+    <!-- Swiper 初始化脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            new Swiper('.heroSwiper', {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true,
+                },
+            });
+        });
+    </script>
+</body>
+</html>

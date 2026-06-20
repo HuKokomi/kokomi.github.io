@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Researches on kokomi个人博客</title>
+		<link>http://localhost:1313/research/</link>
+		<description>Recent content in Researches on kokomi个人博客</description>
+		<generator>Hugo</generator>
+		<language>zh-cn</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 20 Jun 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/research/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>基于Carla的智能车辆跟车场景自适应巡航研究</title>
+				<link>http://localhost:1313/research/thesis/</link>
+				<pubDate>Sat, 20 Jun 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/research/thesis/</guid>
+				<description>本研究基于Carla仿真平台，设计并实现了模型预测控制（MPC）的分层自适应巡航系统，在典型跟车场景中验证了其在稳定性、速度跟踪精度和乘坐舒适性方面均显著优于传统PID控制。</description>
+			</item>
+	</channel>
+</rss>

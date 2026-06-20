@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>超声AI on kokomi个人博客</title>
+		<link>http://localhost:1313/tags/%E8%B6%85%E5%A3%B0ai/</link>
+		<description>Recent content in 超声AI on kokomi个人博客</description>
+		<generator>Hugo</generator>
+		<language>zh-cn</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 20 Jun 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/tags/%E8%B6%85%E5%A3%B0ai/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>便携式慢阻肺AI监测设备荣获“挑战杯”人工智能&#43;专项赛全国特等奖</title>
+				<link>http://localhost:1313/competition/tzb-2025-nj/</link>
+				<pubDate>Sat, 20 Jun 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/competition/tzb-2025-nj/</guid>
+				<description>项目“肺腑之研——便携式慢阻肺AI监测设备开创者”荣获第十八届“挑战杯”全国大学生课外学术科技作品竞赛“人工智能+”专项赛全国特等奖及第十二届“青苗杯”安徽省项目资本对接活动省级银奖。项目自研DDS调频检测电路与超声映射模型，实现全球首创的COPD家庭智能监测。</description>
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,405 @@
+{{ define "main" }}
+
+<!-- ============================================================ -->
+<!-- 1. 全屏轮播大图（保留，与板块风格协调）                      -->
+<!-- ============================================================ -->
+<div class="relative w-full h-screen bg-gray-900 overflow-hidden">
+    <div class="swiper heroSwiper w-full h-full">
+        <div class="swiper-wrapper">
+            <!-- 幻灯片 1 -->
+            <div class="swiper-slide relative">
+                <img src="/db_imsges/image/abc8318cc20d78272b169438671575e9.jpg"
+                     class="absolute inset-0 w-full h-full object-cover opacity-70"
+                     alt="北京大学校园风光">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/0 to-black/10"></div>
+            </div>
+            <!-- 幻灯片 2 -->
+            <div class="swiper-slide relative">
+                <img src="/db_imsges/150040010009/e5c7bd3624d9df584e7e5b2b160b2591.jpg"
+                     class="absolute inset-0 w-full h-full object-cover opacity-70"
+                     alt="实验室科研场景">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/0 to-black/10"></div>
+            </div>
+            <!-- 幻灯片 3 -->
+            <div class="swiper-slide relative">
+                <img src="/db_imsges/150040010009/d457e14462fcae6d64fa664d62394ccb.jpg"
+                     class="absolute inset-0 w-full h-full object-cover opacity-70"
+                     alt="学术活动">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/0 to-black/10"></div>
+            </div>
+        </div>
+        <!-- 分页器与导航 -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev !text-white/70 hover:!text-white"></div>
+        <div class="swiper-button-next !text-white/70 hover:!text-white"></div>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 2. 四大核心板块 —— 重构为独立区块                            -->
+<!-- ============================================================ -->
+<div id="panels" class="max-w-[1800px] mx-auto px-4 py-16">
+
+    <!-- ====== 竞赛板块（联动+自动轮播+精细交互） ====== -->
+    <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 mb-20">
+        <div class="lg:w-2/5 flex-shrink-0">
+            <div class="mb-6">
+                <span class="text-sm font-semibold text-[#A31F34] tracking-widest uppercase">Competition</span>
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 mt-1">竞赛成果</h2>
+                <p class="text-gray-500 text-sm leading-relaxed mt-3 max-w-md">
+                    在国内外高水平学科竞赛中屡获殊荣，以创新实力与团队协作不断突破技术边界。
+                </p>
+            </div>
+            <!-- 左侧列表容器，增加 id 供 JS 控制 -->
+            <div id="compList" class="space-y-2 relative">
+                {{ $compPages := where .Site.RegularPages "Section" "competition" | first 5 }}
+                {{ if $compPages }}
+                    {{ range $index, $page := $compPages }}
+                    <!-- 添加 data-* 属性存储信息，精细化 hover 动画 -->
+                    <a href="{{ .Permalink }}" 
+                       class="competition-item group flex items-center gap-4 p-3 rounded-lg transition-all duration-300 border border-transparent hover:bg-[#A31F34]/5 hover:border-[#A31F34]/20"
+                       data-image="{{ if .Params.featured_image }}{{ .Params.featured_image }}{{ else }}/images/default-competition.jpg{{ end }}"
+                       data-title="{{ .Title }}"
+                       data-summary="{{ .Summary | plainify | truncate 80 }}"
+                       data-link="{{ .Permalink }}">
+                        
+                        <div class="w-20 h-16 flex-shrink-0 rounded-md overflow-hidden bg-gray-200 relative">
+                            {{ if .Params.featured_image }}
+                                <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            {{ else }}
+                                <div class="w-full h-full flex items-center justify-center text-gray-400 bg-gray-100">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+                                </div>
+                            {{ end }}
+                            <!-- 遮罩层，悬停时微闪效果 -->
+                            <div class="absolute inset-0 bg-white/0 transition-colors duration-300 group-hover:bg-white/10"></div>
+                        </div>
+
+                        <!-- 文字容器：增加滑动（translate-x）与颜色变化 -->
+                        <div class="text-content flex-1 min-w-0 transition-transform duration-400 ease-out">
+                            <div class="text-title text-sm font-medium text-gray-800 transition-colors duration-300 line-clamp-2">{{ .Title }}</div>
+                            <div class="text-xs text-gray-400 mt-0.5 transition-colors duration-300">{{ .Date.Format "2006-01-02" }}</div>
+                        </div>
+                    </a>
+                    {{ end }}
+                {{ else }}
+                    <div class="text-center text-gray-400 py-8">
+                        <p>竞赛成果整理中</p>
+                        <a href="/posts/" class="mt-1 inline-block text-[#A31F34] text-sm hover:underline">先看随笔 →</a>
+                    </div>
+                {{ end }}
+            </div>
+        </div>
+
+        <!-- 右侧大图区域 -->
+        <div id="compBigImageContainer" class="lg:flex-1 min-h-[360px] lg:min-h-[420px] rounded-2xl overflow-hidden shadow-xl bg-gray-200 relative group cursor-pointer">
+            {{ $firstComp := index (where .Site.RegularPages "Section" "competition" | first 1) 0 }}
+            <!-- 背景图独立分层，方便做透明度淡入淡出和缩放 -->
+            <div id="compBigImage" class="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-500 ease-in-out group-hover:scale-105" 
+                 style="background-image: url('{{ if $firstComp }}{{ $firstComp.Params.featured_image }}{{ else }}/images/default-competition.jpg{{ end }}');">
+            </div>
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
+            
+            <div class="absolute bottom-6 left-6 right-6 text-white z-10 transition-all duration-300" id="compBigText">
+                {{ if $firstComp }}
+                    <h3 class="text-xl lg:text-2xl font-serif font-bold drop-shadow-md">{{ $firstComp.Title }}</h3>
+                    <p class="text-sm text-white/90 drop-shadow-sm mt-1 line-clamp-2">{{ $firstComp.Summary }}</p>
+                {{ else }}
+                    <h3 class="text-xl font-serif font-bold">竞赛成果展示</h3>
+                    <p class="text-sm text-white/80">敬请期待更多精彩内容</p>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 科研板块（独立） ====== -->
+    <div class="section-block mb-16">
+        <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
+            <div class="flex items-center gap-3">
+                <span class="w-1 h-8 bg-[#A31F34] rounded-full"></span>
+                <div>
+                    <span class="text-xs font-semibold text-[#A31F34] tracking-widest uppercase">Research</span>
+                    <h2 class="text-2xl lg:text-3xl font-serif font-bold text-gray-900">学术科研</h2>
+                </div>
+            </div>
+            <a href="/research/" class="text-sm font-medium text-gray-400 hover:text-[#A31F34] transition-colors flex items-center group">
+                查看更多
+                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {{ $researchPages := where .Site.RegularPages "Section" "research" | first 3 }}
+            {{ if $researchPages }}
+                {{ range $researchPages }}
+                <a href="{{ .Permalink }}" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
+                    <div class="aspect-[16/9] bg-gray-200 overflow-hidden relative">
+                        {{ if .Params.featured_image }}
+                            <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        {{ else }}
+                            <div class="w-full h-full flex items-center justify-center text-gray-400 bg-gray-100">
+                                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                            </div>
+                        {{ end }}
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-serif font-bold text-gray-800 group-hover:text-[#A31F34] transition-colors line-clamp-2">{{ .Title }}</h3>
+                        {{ with .Summary }}<p class="text-sm text-gray-500 mt-1 line-clamp-2">{{ . }}</p>{{ end }}
+                    </div>
+                </a>
+                {{ end }}
+            {{ else }}
+                <div class="col-span-3 text-center text-gray-400 py-8">
+                    <p>科研文章正在建设中</p>
+                    <a href="/posts/" class="mt-1 inline-block text-[#A31F34] text-sm hover:underline">先看随笔 →</a>
+                </div>
+            {{ end }}
+        </div>
+    </div>
+
+    <!-- ====== 学习笔记板块（独立） ====== -->
+    <div class="section-block mb-16">
+        <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
+            <div class="flex items-center gap-3">
+                <span class="w-1 h-8 bg-[#A31F34] rounded-full"></span>
+                <div>
+                    <span class="text-xs font-semibold text-[#A31F34] tracking-widest uppercase">Learning</span>
+                    <h2 class="text-2xl lg:text-3xl font-serif font-bold text-gray-900">学习笔记</h2>
+                </div>
+            </div>
+            <a href="/study/" class="text-sm font-medium text-gray-400 hover:text-[#A31F34] transition-colors flex items-center group">
+                查看更多
+                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {{ $studyPages := where .Site.RegularPages "Section" "study" | first 3 }}
+            {{ if $studyPages }}
+                {{ range $studyPages }}
+                <a href="{{ .Permalink }}" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
+                    <div class="aspect-[16/9] bg-gray-200 overflow-hidden relative">
+                        {{ if .Params.featured_image }}
+                            <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        {{ else }}
+                            <div class="w-full h-full flex items-center justify-center text-gray-400 bg-gray-100">
+                                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                            </div>
+                        {{ end }}
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-serif font-bold text-gray-800 group-hover:text-[#A31F34] transition-colors line-clamp-2">{{ .Title }}</h3>
+                        {{ with .Summary }}<p class="text-sm text-gray-500 mt-1 line-clamp-2">{{ . }}</p>{{ end }}
+                    </div>
+                </a>
+                {{ end }}
+            {{ else }}
+                <div class="col-span-3 text-center text-gray-400 py-8">
+                    <p>笔记正在积累中</p>
+                    <a href="/posts/" class="mt-1 inline-block text-[#A31F34] text-sm hover:underline">先看随笔 →</a>
+                </div>
+            {{ end }}
+        </div>
+    </div>
+
+    <!-- ====== 学术活动板块（独立） ====== -->
+    <div class="section-block mb-16">
+        <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
+            <div class="flex items-center gap-3">
+                <span class="w-1 h-8 bg-[#A31F34] rounded-full"></span>
+                <div>
+                    <span class="text-xs font-semibold text-[#A31F34] tracking-widest uppercase">Activities</span>
+                    <h2 class="text-2xl lg:text-3xl font-serif font-bold text-gray-900">学术活动</h2>
+                </div>
+            </div>
+            <a href="/activities/" class="text-sm font-medium text-gray-400 hover:text-[#A31F34] transition-colors flex items-center group">
+                查看更多
+                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {{ $activityPages := where .Site.RegularPages "Section" "activities" | first 3 }}
+            {{ if $activityPages }}
+                {{ range $activityPages }}
+                <a href="{{ .Permalink }}" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
+                    <div class="aspect-[16/9] bg-gray-200 overflow-hidden relative">
+                        {{ if .Params.featured_image }}
+                            <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        {{ else }}
+                            <div class="w-full h-full flex items-center justify-center text-gray-400 bg-gray-100">
+                                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                            </div>
+                        {{ end }}
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-serif font-bold text-gray-800 group-hover:text-[#A31F34] transition-colors line-clamp-2">{{ .Title }}</h3>
+                        {{ with .Summary }}<p class="text-sm text-gray-500 mt-1 line-clamp-2">{{ . }}</p>{{ end }}
+                    </div>
+                </a>
+                {{ end }}
+            {{ else }}
+                <div class="col-span-3 text-center text-gray-400 py-8">
+                    <p>活动安排中</p>
+                    <a href="/posts/" class="mt-1 inline-block text-[#A31F34] text-sm hover:underline">先看随笔 →</a>
+                </div>
+            {{ end }}
+        </div>
+    </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- 3. 最新学术随笔（保留，视觉优化）                            -->
+<!-- ============================================================ -->
+<div id="posts" class="py-16 bg-gray-50">
+    <div class="max-w-[1800px] mx-auto px-4">
+        <div class="border-b border-gray-200 pb-4 mb-8">
+            <div class="flex justify-between items-end">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900">📝 最新学术随笔</h2>
+                    <p class="text-sm text-gray-500 mt-2">思想碰撞，笔耕不辍</p>
+                </div>
+                <a href="/posts/" class="hidden sm:inline-flex items-center text-sm text-[#A31F34] hover:text-[#A31F34]/80 transition font-medium group">
+                    查看全部
+                    <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {{ range first 3 (where .Site.RegularPages "Section" "posts") }}
+                <a href="{{ .Permalink }}" class="group block bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
+                    <div class="p-6">
+                        <span class="text-xs text-[#A31F34] font-medium tracking-wider">{{ .Date.Format "2006-01-02" }}</span>
+                        <h3 class="text-lg font-serif font-bold text-gray-800 mt-2 group-hover:text-[#A31F34] transition-colors leading-snug">{{ .Title }}</h3>
+                        {{ with .Summary }}<p class="text-sm text-gray-500 mt-3 line-clamp-3">{{ . }}</p>{{ end }}
+                        <div class="mt-4 flex items-center text-xs text-[#A31F34] font-medium">
+                            阅读全文
+                            <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </a>
+            {{ end }}
+        </div>
+        <div class="mt-8 text-center sm:hidden">
+            <a href="/posts/" class="inline-flex items-center text-sm text-[#A31F34] font-medium">查看全部 →</a>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- JavaScript：竞赛板块悬停联动与自动轮播                        -->
+<!-- ============================================================ -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const items = document.querySelectorAll('#compList .competition-item');
+        const bigImage = document.getElementById('compBigImage');
+        const bigImageContainer = document.getElementById('compBigImageContainer');
+        const bigTextContainer = document.getElementById('compBigText');
+
+        if (items.length === 0) return;
+
+        let currentIndex = 0;
+        let autoplayTimer = null;
+        const AUTOPLAY_INTERVAL = 3500; // 每3.5秒自动轮播一次
+
+        // 设置当前激活项
+        function setActive(index) {
+            currentIndex = index;
+            
+            // 1. 处理左侧列表状态
+            items.forEach((el, i) => {
+                const isCurrent = i === index;
+                
+                // 基础选中样式（背景与边框）
+                el.classList.toggle('bg-[#A31F34]/5', isCurrent);
+                el.classList.toggle('border-[#A31F34]/30', isCurrent);
+                
+                // 核心交互：控制文字水平滑动 (translate-x-2 模拟清华向右侧微微缩进的效果)与颜色变化
+                const textWrap = el.querySelector('.text-content');
+                const title = el.querySelector('.text-title');
+                
+                if (textWrap) {
+                    // 添加平滑移动效果
+                    isCurrent ? textWrap.classList.add('translate-x-2') : textWrap.classList.remove('translate-x-2');
+                }
+                if (title) {
+                    // 标题变为主题红
+                    isCurrent ? title.classList.add('text-[#A31F34]') : title.classList.remove('text-[#A31F34]');
+                }
+            });
+
+            // 2. 更新右侧大图区域
+            const target = items[index];
+            if (target) {
+                const imgSrc = target.getAttribute('data-image');
+                const title = target.getAttribute('data-title');
+                const summary = target.getAttribute('data-summary');
+                const link = target.getAttribute('data-link');
+
+                // 背景图淡入淡出过渡处理
+                bigImage.style.opacity = '0.6';
+                setTimeout(() => {
+                    bigImage.style.backgroundImage = `url('${imgSrc}')`;
+                    bigImage.style.opacity = '1';
+                }, 150);
+
+                // 更新整个右侧大框的跳转链接
+                bigImageContainer.onclick = () => location.href = link;
+
+                // 更新文字内容，加一点防抖式的微动画
+                if (bigTextContainer) {
+                    bigTextContainer.style.opacity = '0';
+                    setTimeout(() => {
+                        bigTextContainer.innerHTML = `
+                            <h3 class="text-xl lg:text-2xl font-serif font-bold drop-shadow-md mb-2">${title}</h3>
+                            <p class="text-sm text-white/90 drop-shadow-sm line-clamp-2">${summary}</p>
+                        `;
+                        bigTextContainer.style.opacity = '1';
+                    }, 150);
+                }
+            }
+        }
+
+        // 启动轮播
+        function startAutoplay() {
+            stopAutoplay();
+            autoplayTimer = setInterval(() => {
+                let nextIndex = (currentIndex + 1) % items.length;
+                setActive(nextIndex);
+            }, AUTOPLAY_INTERVAL);
+        }
+
+        // 停止轮播
+        function stopAutoplay() {
+            if (autoplayTimer) {
+                clearInterval(autoplayTimer);
+                autoplayTimer = null;
+            }
+        }
+
+        // 绑定事件
+        items.forEach((item, index) => {
+            // 鼠标移入对应侧栏条目：触发样式变化并暂停轮播
+            item.addEventListener('mouseenter', function(e) {
+                if (currentIndex !== index) {
+                    setActive(index);
+                }
+                stopAutoplay();
+            });
+
+            // 鼠标移出条目：恢复自动轮播
+            item.addEventListener('mouseleave', function(e) {
+                startAutoplay();
+            });
+        });
+
+        // 鼠标悬停在右侧大图区域时，也暂停轮播方便用户阅读
+        bigImageContainer.addEventListener('mouseenter', stopAutoplay);
+        bigImageContainer.addEventListener('mouseleave', startAutoplay);
+
+        // 初始化启动
+        setActive(0);
+        startAutoplay();
+    });
+</script>
+
+{{ end }}
