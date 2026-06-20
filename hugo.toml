@@ -1,6 +1,6 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://hukokomi.github.io/kokomi.github.io/'
 languageCode = 'zh-cn'
 title = 'kokomi个人博客'
 
 [params]
-  # 清空或不指定第三方主题，Hugo 将完全采用我们在 layouts/ 里手写的北大官网结构
+  # yifi Hu
