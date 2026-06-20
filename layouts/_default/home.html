@@ -1,35 +1,36 @@
 {{ define "main" }}
 
 <!-- ============================================================ -->
-<!-- 1. 全屏轮播大图（已恢复蒙版，路径使用 absURL）                 -->
+<!-- 1. 全屏轮播大图（路径改为根相对路径，不再依赖 absURL）      -->
 <!-- ============================================================ -->
 <div class="relative w-full h-screen bg-gray-900 overflow-hidden">
     <div class="swiper heroSwiper w-full h-full">
         <div class="swiper-wrapper">
             <!-- 幻灯片 1 -->
             <div class="swiper-slide relative">
-                <img src="{{ absURL "db_imsges/image/abc8318cc20d78272b169438671575e9.jpg" }}"
+                <img src="/db_imsges/image/abc8318cc20d78272b169438671575e9.jpg"
                      class="absolute inset-0 w-full h-full object-cover opacity-70"
-                     alt="北京大学校园风光">
-                <!-- 蒙版层：从底部向上渐变（黑→透明），加强文字可读性 -->
+                     alt="北京大学校园风光"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221600%22 height=%22900%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23334155%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2230%22%3E%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E9%A3%8E%E5%85%89%3C/text%3E%3C/svg%3E';">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
             </div>
             <!-- 幻灯片 2 -->
             <div class="swiper-slide relative">
-                <img src="{{ absURL "db_imsges/150040010009/e5c7bd3624d9df584e7e5b2b160b2591.jpg" }}"
+                <img src="/db_imsges/150040010009/e5c7bd3624d9df584e7e5b2b160b2591.jpg"
                      class="absolute inset-0 w-full h-full object-cover opacity-70"
-                     alt="实验室科研场景">
+                     alt="实验室科研场景"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221600%22 height=%22900%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23334155%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2230%22%3E%E5%AE%9E%E9%AA%8C%E5%AE%A4%E7%A7%91%E7%A0%94%E5%9C%BA%E6%99%AF%3C/text%3E%3C/svg%3E';">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
             </div>
             <!-- 幻灯片 3 -->
             <div class="swiper-slide relative">
-                <img src="{{ absURL "db_imsges/150040010009/d457e14462fcae6d64fa664d62394ccb.jpg" }}"
+                <img src="/db_imsges/150040010009/d457e14462fcae6d64fa664d62394ccb.jpg"
                      class="absolute inset-0 w-full h-full object-cover opacity-70"
-                     alt="学术活动">
+                     alt="学术活动"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221600%22 height=%22900%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23334155%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2230%22%3E%E5%AD%A6%E6%9C%AF%E6%B4%BB%E5%8A%A8%3C/text%3E%3C/svg%3E';">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
             </div>
         </div>
-        <!-- 分页器与导航 -->
         <div class="swiper-pagination"></div>
         <div class="swiper-button-prev !text-white/70 hover:!text-white"></div>
         <div class="swiper-button-next !text-white/70 hover:!text-white"></div>
@@ -37,11 +38,11 @@
 </div>
 
 <!-- ============================================================ -->
-<!-- 2. 四大核心板块                                               -->
+<!-- 2. 四大核心板块（路径全部根相对化，不依赖 absURL）           -->
 <!-- ============================================================ -->
 <div id="panels" class="max-w-[1800px] mx-auto px-4 py-16">
 
-    <!-- ====== 竞赛板块（联动+自动轮播+精细交互） ====== -->
+    <!-- ====== 竞赛板块 ====== -->
     <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 mb-20">
         <div class="lg:w-2/5 flex-shrink-0">
             <div class="mb-6">
@@ -55,16 +56,18 @@
                 {{ $compPages := where .Site.RegularPages "Section" "competition" | first 5 }}
                 {{ if $compPages }}
                     {{ range $index, $page := $compPages }}
+                    {{ $img := .Params.featured_image }}
                     <a href="{{ .Permalink }}" 
                        class="competition-item group flex items-center gap-4 p-3 rounded-lg transition-all duration-300 border border-transparent hover:bg-[#A31F34]/5 hover:border-[#A31F34]/20"
-                       data-image="{{ if .Params.featured_image }}{{ .Params.featured_image | absURL }}{{ else }}{{ absURL "images/default-competition.jpg" }}{{ end }}"
+                       data-image="{{ if $img }}/{{ $img }}{{ else }}/images/default-competition.jpg{{ end }}"
                        data-title="{{ .Title }}"
                        data-summary="{{ .Summary | plainify | truncate 80 }}"
                        data-link="{{ .Permalink }}">
                         
                         <div class="w-20 h-16 flex-shrink-0 rounded-md overflow-hidden bg-gray-200 relative">
-                            {{ if .Params.featured_image }}
-                                <img src="{{ .Params.featured_image | absURL }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            {{ if $img }}
+                                <img src="/{{ $img }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                     onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2264%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%228%22%3E%E6%9A%82%E6%97%A0%3C/text%3E%3C/svg%3E';">
                             {{ else }}
                                 <div class="w-full h-full flex items-center justify-center text-gray-400 bg-gray-100">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
@@ -82,20 +85,25 @@
                 {{ else }}
                     <div class="text-center text-gray-400 py-8">
                         <p>竞赛成果整理中</p>
-                        <a href="{{ absURL "posts/" }}" class="mt-1 inline-block text-[#A31F34] text-sm hover:underline">先看随笔 →</a>
+                        <a href="/posts/" class="mt-1 inline-block text-[#A31F34] text-sm hover:underline">先看随笔 →</a>
                     </div>
                 {{ end }}
             </div>
         </div>
 
-        <!-- 右侧大图 -->
+        <!-- 右侧大图（背景图同样用根相对路径） -->
         <div id="compBigImageContainer" class="lg:flex-1 min-h-[360px] lg:min-h-[420px] rounded-2xl overflow-hidden shadow-xl bg-gray-200 relative group cursor-pointer">
             {{ $firstComp := index (where .Site.RegularPages "Section" "competition" | first 1) 0 }}
+            {{ $firstImg := "/images/default-competition.jpg" }}
+            {{ if $firstComp }}
+                {{ with $firstComp.Params.featured_image }}
+                    {{ $firstImg = printf "/%s" . }}
+                {{ end }}
+            {{ end }}
             <div id="compBigImage" class="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-500 ease-in-out group-hover:scale-105" 
-                 style="background-image: url('{{ if $firstComp }}{{ if $firstComp.Params.featured_image }}{{ $firstComp.Params.featured_image | absURL }}{{ else }}{{ absURL "images/default-competition.jpg" }}{{ end }}{{ else }}{{ absURL "images/default-competition.jpg" }}{{ end }}');">
+                 style="background-image: url('{{ $firstImg }}');">
             </div>
             
-            <!-- 右侧大图的文字蒙版（保留） -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
             
             <div class="absolute bottom-6 left-6 right-6 text-white z-10 transition-all duration-300" id="compBigText">
@@ -110,7 +118,7 @@
         </div>
     </div>
 
-    <!-- ====== 科研板块（路径统一为 absURL） ====== -->
+    <!-- ====== 科研板块 ====== -->
     <div class="section-block mb-16">
         <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
             <div class="flex items-center gap-3">
@@ -120,7 +128,7 @@
                     <h2 class="text-2xl lg:text-3xl font-serif font-bold text-gray-900">学术科研</h2>
                 </div>
             </div>
-            <a href="{{ absURL "research/" }}" class="text-sm font-medium text-gray-400 hover:text-[#A31F34] transition-colors flex items-center group">
+            <a href="/research/" class="text-sm font-medium text-gray-400 hover:text-[#A31F34] transition-colors flex items-center group">
                 查看更多
                 <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
@@ -129,10 +137,12 @@
             {{ $researchPages := where .Site.RegularPages "Section" "research" | first 3 }}
             {{ if $researchPages }}
                 {{ range $researchPages }}
+                {{ $img := .Params.featured_image }}
                 <a href="{{ .Permalink }}" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
                     <div class="aspect-[16/9] bg-gray-200 overflow-hidden relative">
-                        {{ if .Params.featured_image }}
-                            <img src="{{ .Params.featured_image | absURL }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        {{ if $img }}
+                            <img src="/{{ $img }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%2216%22%3E%E7%A7%91%E7%A0%94%E5%9B%BE%E7%89%87%3C/text%3E%3C/svg%3E';">
                         {{ else }}
                             <div class="w-full h-full flex items-center justify-center text-gray-400 bg-gray-100">
                                 <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
@@ -148,13 +158,13 @@
             {{ else }}
                 <div class="col-span-3 text-center text-gray-400 py-8">
                     <p>科研文章正在建设中</p>
-                    <a href="{{ absURL "posts/" }}" class="mt-1 inline-block text-[#A31F34] text-sm hover:underline">先看随笔 →</a>
+                    <a href="/posts/" class="mt-1 inline-block text-[#A31F34] text-sm hover:underline">先看随笔 →</a>
                 </div>
             {{ end }}
         </div>
     </div>
 
-    <!-- ====== 学习笔记板块（同样处理） ====== -->
+    <!-- ====== 学习笔记板块 ====== -->
     <div class="section-block mb-16">
         <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
             <div class="flex items-center gap-3">
@@ -164,7 +174,7 @@
                     <h2 class="text-2xl lg:text-3xl font-serif font-bold text-gray-900">学习笔记</h2>
                 </div>
             </div>
-            <a href="{{ absURL "study/" }}" class="text-sm font-medium text-gray-400 hover:text-[#A31F34] transition-colors flex items-center group">
+            <a href="/study/" class="text-sm font-medium text-gray-400 hover:text-[#A31F34] transition-colors flex items-center group">
                 查看更多
                 <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
@@ -173,10 +183,12 @@
             {{ $studyPages := where .Site.RegularPages "Section" "study" | first 3 }}
             {{ if $studyPages }}
                 {{ range $studyPages }}
+                {{ $img := .Params.featured_image }}
                 <a href="{{ .Permalink }}" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
                     <div class="aspect-[16/9] bg-gray-200 overflow-hidden relative">
-                        {{ if .Params.featured_image }}
-                            <img src="{{ .Params.featured_image | absURL }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        {{ if $img }}
+                            <img src="/{{ $img }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%2216%22%3E%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%3C/text%3E%3C/svg%3E';">
                         {{ else }}
                             <div class="w-full h-full flex items-center justify-center text-gray-400 bg-gray-100">
                                 <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
@@ -192,13 +204,13 @@
             {{ else }}
                 <div class="col-span-3 text-center text-gray-400 py-8">
                     <p>笔记正在积累中</p>
-                    <a href="{{ absURL "posts/" }}" class="mt-1 inline-block text-[#A31F34] text-sm hover:underline">先看随笔 →</a>
+                    <a href="/posts/" class="mt-1 inline-block text-[#A31F34] text-sm hover:underline">先看随笔 →</a>
                 </div>
             {{ end }}
         </div>
     </div>
 
-    <!-- ====== 学术活动板块（同样处理） ====== -->
+    <!-- ====== 学术活动板块 ====== -->
     <div class="section-block mb-16">
         <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
             <div class="flex items-center gap-3">
@@ -208,7 +220,7 @@
                     <h2 class="text-2xl lg:text-3xl font-serif font-bold text-gray-900">学术活动</h2>
                 </div>
             </div>
-            <a href="{{ absURL "activities/" }}" class="text-sm font-medium text-gray-400 hover:text-[#A31F34] transition-colors flex items-center group">
+            <a href="/activities/" class="text-sm font-medium text-gray-400 hover:text-[#A31F34] transition-colors flex items-center group">
                 查看更多
                 <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
@@ -217,10 +229,12 @@
             {{ $activityPages := where .Site.RegularPages "Section" "activities" | first 3 }}
             {{ if $activityPages }}
                 {{ range $activityPages }}
+                {{ $img := .Params.featured_image }}
                 <a href="{{ .Permalink }}" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
                     <div class="aspect-[16/9] bg-gray-200 overflow-hidden relative">
-                        {{ if .Params.featured_image }}
-                            <img src="{{ .Params.featured_image | absURL }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        {{ if $img }}
+                            <img src="/{{ $img }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%2216%22%3E%E5%AD%A6%E6%9C%AF%E6%B4%BB%E5%8A%A8%3C/text%3E%3C/svg%3E';">
                         {{ else }}
                             <div class="w-full h-full flex items-center justify-center text-gray-400 bg-gray-100">
                                 <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
@@ -236,7 +250,7 @@
             {{ else }}
                 <div class="col-span-3 text-center text-gray-400 py-8">
                     <p>活动安排中</p>
-                    <a href="{{ absURL "posts/" }}" class="mt-1 inline-block text-[#A31F34] text-sm hover:underline">先看随笔 →</a>
+                    <a href="/posts/" class="mt-1 inline-block text-[#A31F34] text-sm hover:underline">先看随笔 →</a>
                 </div>
             {{ end }}
         </div>
@@ -255,7 +269,7 @@
                     <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900">📝 最新学术随笔</h2>
                     <p class="text-sm text-gray-500 mt-2">思想碰撞，笔耕不辍</p>
                 </div>
-                <a href="{{ absURL "posts/" }}" class="hidden sm:inline-flex items-center text-sm text-[#A31F34] hover:text-[#A31F34]/80 transition font-medium group">
+                <a href="/posts/" class="hidden sm:inline-flex items-center text-sm text-[#A31F34] hover:text-[#A31F34]/80 transition font-medium group">
                     查看全部
                     <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
@@ -277,13 +291,13 @@
             {{ end }}
         </div>
         <div class="mt-8 text-center sm:hidden">
-            <a href="{{ absURL "posts/" }}" class="inline-flex items-center text-sm text-[#A31F34] font-medium">查看全部 →</a>
+            <a href="/posts/" class="inline-flex items-center text-sm text-[#A31F34] font-medium">查看全部 →</a>
         </div>
     </div>
 </div>
 
 <!-- ============================================================ -->
-<!-- JavaScript：竞赛板块悬停联动与自动轮播                        -->
+<!-- JavaScript：竞赛板块悬停联动与自动轮播（含背景图容错）       -->
 <!-- ============================================================ -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -297,6 +311,25 @@
         let currentIndex = 0;
         let autoplayTimer = null;
         const AUTOPLAY_INTERVAL = 3500;
+
+        // 内置占位 SVG 背景（深色主题风格）
+        const fallbackBg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450'%3E%3Crect width='100%25' height='100%25' fill='%23334155'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%2394a3b8' font-family='sans-serif' font-size='24'%3E%E7%AB%9E%E8%B5%9B%E5%9B%BE%E7%89%87%3C/text%3E%3C/svg%3E";
+
+        function testImage(url, callback) {
+            const img = new Image();
+            img.onload = () => callback(true);
+            img.onerror = () => callback(false);
+            img.src = url;
+        }
+
+        function setBigBackground(url) {
+            bigImage.style.backgroundImage = `url('${url}')`;
+            testImage(url, (success) => {
+                if (!success) {
+                    bigImage.style.backgroundImage = `url('${fallbackBg}')`;
+                }
+            });
+        }
 
         function setActive(index) {
             currentIndex = index;
@@ -326,7 +359,7 @@
 
                 bigImage.style.opacity = '0.6';
                 setTimeout(() => {
-                    bigImage.style.backgroundImage = `url('${imgSrc}')`;
+                    setBigBackground(imgSrc);
                     bigImage.style.opacity = '1';
                 }, 150);
 
@@ -367,7 +400,6 @@
                 }
                 stopAutoplay();
             });
-
             item.addEventListener('mouseleave', function(e) {
                 startAutoplay();
             });
@@ -376,12 +408,19 @@
         bigImageContainer.addEventListener('mouseenter', stopAutoplay);
         bigImageContainer.addEventListener('mouseleave', startAutoplay);
 
+        // 页面初始时检测一次大图背景
+        const initialBg = bigImage.style.backgroundImage.slice(5, -2);
+        if (initialBg) {
+            testImage(initialBg, (success) => {
+                if (!success) {
+                    bigImage.style.backgroundImage = `url('${fallbackBg}')`;
+                }
+            });
+        }
+
         setActive(0);
         startAutoplay();
     });
 </script>
-
-{{/* 消除 VSCode 的 CSS 误报 */}}
-<style>/* 此空样式块仅用于安抚编辑器 */</style>
 
 {{ end }}
