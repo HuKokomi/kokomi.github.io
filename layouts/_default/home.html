@@ -1,30 +1,35 @@
 {{ define "main" }}
 
 <!-- ============================================================ -->
-<!-- 1. 全屏轮播大图（所有图片路径使用 absURL）                    -->
+<!-- 1. 全屏轮播大图（已恢复蒙版，路径使用 absURL）                 -->
 <!-- ============================================================ -->
 <div class="relative w-full h-screen bg-gray-900 overflow-hidden">
     <div class="swiper heroSwiper w-full h-full">
         <div class="swiper-wrapper">
+            <!-- 幻灯片 1 -->
             <div class="swiper-slide relative">
                 <img src="{{ absURL "db_imsges/image/abc8318cc20d78272b169438671575e9.jpg" }}"
                      class="absolute inset-0 w-full h-full object-cover opacity-70"
                      alt="北京大学校园风光">
-                <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/0 to-black/10"></div>
+                <!-- 蒙版层：从底部向上渐变（黑→透明），加强文字可读性 -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
             </div>
+            <!-- 幻灯片 2 -->
             <div class="swiper-slide relative">
                 <img src="{{ absURL "db_imsges/150040010009/e5c7bd3624d9df584e7e5b2b160b2591.jpg" }}"
                      class="absolute inset-0 w-full h-full object-cover opacity-70"
                      alt="实验室科研场景">
-                <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/0 to-black/10"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
             </div>
+            <!-- 幻灯片 3 -->
             <div class="swiper-slide relative">
                 <img src="{{ absURL "db_imsges/150040010009/d457e14462fcae6d64fa664d62394ccb.jpg" }}"
                      class="absolute inset-0 w-full h-full object-cover opacity-70"
                      alt="学术活动">
-                <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/0 to-black/10"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
             </div>
         </div>
+        <!-- 分页器与导航 -->
         <div class="swiper-pagination"></div>
         <div class="swiper-button-prev !text-white/70 hover:!text-white"></div>
         <div class="swiper-button-next !text-white/70 hover:!text-white"></div>
@@ -90,6 +95,7 @@
                  style="background-image: url('{{ if $firstComp }}{{ if $firstComp.Params.featured_image }}{{ $firstComp.Params.featured_image | absURL }}{{ else }}{{ absURL "images/default-competition.jpg" }}{{ end }}{{ else }}{{ absURL "images/default-competition.jpg" }}{{ end }}');">
             </div>
             
+            <!-- 右侧大图的文字蒙版（保留） -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
             
             <div class="absolute bottom-6 left-6 right-6 text-white z-10 transition-all duration-300" id="compBigText">
@@ -104,7 +110,7 @@
         </div>
     </div>
 
-    <!-- ====== 科研板块 ====== -->
+    <!-- ====== 科研板块（路径统一为 absURL） ====== -->
     <div class="section-block mb-16">
         <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
             <div class="flex items-center gap-3">
@@ -148,7 +154,7 @@
         </div>
     </div>
 
-    <!-- ====== 学习笔记板块 ====== -->
+    <!-- ====== 学习笔记板块（同样处理） ====== -->
     <div class="section-block mb-16">
         <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
             <div class="flex items-center gap-3">
@@ -192,7 +198,7 @@
         </div>
     </div>
 
-    <!-- ====== 学术活动板块 ====== -->
+    <!-- ====== 学术活动板块（同样处理） ====== -->
     <div class="section-block mb-16">
         <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
             <div class="flex items-center gap-3">
