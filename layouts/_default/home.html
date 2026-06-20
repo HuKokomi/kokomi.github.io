@@ -54,16 +54,18 @@
                 {{ $compPages := where .Site.RegularPages "Section" "competition" | first 5 }}
                 {{ if $compPages }}
                     {{ range $index, $page := $compPages }}
+                    <!-- 修复：通过 relURL 处理 data-image 中提取的文章封面图和默认图 -->
                     <a href="{{ .Permalink }}" 
-                    class="competition-item group flex items-center gap-4 p-3 rounded-lg transition-all duration-300 border border-transparent hover:bg-[#A31F34]/5 hover:border-[#A31F34]/20"
-                    data-image="{{ if .Params.featured_image }}{{ .Params.featured_image | absURL }}{{ else }}{{ "images/default-competition.jpg" | absURL }}{{ end }}"
-                    data-title="{{ .Title }}"
-                    data-summary="{{ .Summary | plainify | truncate 80 }}"
-                    data-link="{{ .Permalink }}">
+                       class="competition-item group flex items-center gap-4 p-3 rounded-lg transition-all duration-300 border border-transparent hover:bg-[#A31F34]/5 hover:border-[#A31F34]/20"
+                       data-image="{{ if .Params.featured_image }}{{ .Params.featured_image | relURL }}{{ else }}{{ relURL "images/default-competition.jpg" }}{{ end }}"
+                       data-title="{{ .Title }}"
+                       data-summary="{{ .Summary | plainify | truncate 80 }}"
+                       data-link="{{ .Permalink }}">
                         
                         <div class="w-20 h-16 flex-shrink-0 rounded-md overflow-hidden bg-gray-200 relative">
                             {{ if .Params.featured_image }}
-                                <img src="{{ .Params.featured_image | absURL }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                                <!-- 修复：文章封面图加上 relURL 处理 -->
+                                <img src="{{ .Params.featured_image | relURL }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                             {{ else }}
                                 <div class="w-full h-full flex items-center justify-center text-gray-400 bg-gray-100">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
@@ -81,17 +83,19 @@
                 {{ else }}
                     <div class="text-center text-gray-400 py-8">
                         <p>竞赛成果整理中</p>
+                        <!-- 修复：查看更多链接使用 relURL -->
                         <a href="{{ relURL "posts/" }}" class="mt-1 inline-block text-[#A31F34] text-sm hover:underline">先看随笔 →</a>
                     </div>
                 {{ end }}
             </div>
         </div>
 
-        <!-- 右侧大图 -->
+        <!-- 右侧大图区域 -->
         <div id="compBigImageContainer" class="lg:flex-1 min-h-[360px] lg:min-h-[420px] rounded-2xl overflow-hidden shadow-xl bg-gray-200 relative group cursor-pointer">
             {{ $firstComp := index (where .Site.RegularPages "Section" "competition" | first 1) 0 }}
+            <!-- 修复：将默认的右侧大图内联样式背景加上 relURL 解析 -->
             <div id="compBigImage" class="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-500 ease-in-out group-hover:scale-105" 
-                style="background-image: url('{{ if $firstComp }}{{ if $firstComp.Params.featured_image }}{{ $firstComp.Params.featured_image | absURL }}{{ else }}{{ "images/default-competition.jpg" | absURL }}{{ end }}{{ else }}{{ "images/default-competition.jpg" | absURL }}{{ end }}');">
+                 style="background-image: url('{{ if $firstComp }}{{ if $firstComp.Params.featured_image }}{{ $firstComp.Params.featured_image | relURL }}{{ else }}{{ relURL "images/default-competition.jpg" }}{{ end }}{{ else }}{{ relURL "images/default-competition.jpg" }}{{ end }}');">
             </div>
             
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
