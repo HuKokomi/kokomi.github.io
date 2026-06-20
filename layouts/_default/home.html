@@ -85,7 +85,7 @@
             </div>
         </div>
 
-    <!-- 右侧大图（已修复背景图加载） -->
+    <!-- 右侧大图（改为 img 标签，与左侧小图加载方式完全一致） -->
     <div id="compBigImageContainer" class="lg:flex-1 min-h-[360px] lg:min-h-[420px] rounded-2xl overflow-hidden shadow-xl bg-gray-200 relative group cursor-pointer">
         {{ $firstComp := index (where .Site.RegularPages "Section" "competition" | first 1) 0 }}
         {{ $firstImg := "/images/default-competition.jpg" }}
@@ -94,15 +94,17 @@
                 {{ $firstImg = . }}
             {{ end }}
         {{ end }}
-        <div id="compBigImage" class="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-500 ease-in-out group-hover:scale-105" 
-            style="background-image: url('{{ $firstImg }}');">
-        </div>
-        <!-- 隐藏的 img 标签用于检测背景图是否加载成功，失败时自动替换为占位图 -->
-        <img src="{{ $firstImg }}" class="hidden" 
-            onerror="document.getElementById('compBigImage').style.backgroundImage = 'url(data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23334155%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2224%22%3E%E7%AB%9E%E8%B5%9B%E5%9B%BE%E7%89%87%3C/text%3E%3C/svg%3E)'">
         
+        <!-- 核心改动：用 img 标签替代背景图 -->
+        <img src="{{ $firstImg }}" alt="{{ if $firstComp }}{{ $firstComp.Title }}{{ else }}竞赛成果展示{{ end }}"
+            class="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:scale-105"
+            id="compBigImage"
+            onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23334155%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2224%22%3E%E7%AB%9E%E8%B5%9B%E5%9B%BE%E7%89%87%3C/text%3E%3C/svg%3E';">
+        
+        <!-- 蒙版层保留 -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
         
+        <!-- 文字层保留 -->
         <div class="absolute bottom-6 left-6 right-6 text-white z-10 transition-all duration-300" id="compBigText">
             {{ if $firstComp }}
                 <h3 class="text-xl lg:text-2xl font-serif font-bold drop-shadow-md">{{ $firstComp.Title }}</h3>
