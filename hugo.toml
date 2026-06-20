@@ -1,6 +1,7 @@
-baseURL = 'https://hukokomi.github.io/kokomi.github.io/'
+baseURL = "https://hukokomi.github.io/kokomi.github.io/"
 languageCode = 'zh-cn'
 title = 'kokomi个人博客'
+relativeURLs = true
 
 [params]
   # yifi Hu
