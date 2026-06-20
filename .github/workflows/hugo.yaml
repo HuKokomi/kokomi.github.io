@@ -41,6 +41,9 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true   # 添加这一行，自动启用 Pages
+        
 
       - name: Build with Hugo
         run: |
