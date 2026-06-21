@@ -5,7 +5,7 @@ draft: false
 Weight: 2
 categories: ["竞赛动态"]
 tags: ["挑战杯", "智慧城市", "双碳", "创新创业"]
-featured_image: "/db_imsges/competition/8165cd63f4911e9ca028234b655a4f87.jpg"
+featured_image: "/competition/tiaozhanbei202401/8165cd63f4911e9ca028234b655a4f87.jpg"
 summary: "项目“灯高'碳'远”荣获第十四届“挑战杯”中国大学生创业计划竞赛国家级铜奖、安徽省金奖，通过自研“耀心”算法、分离式电源与快捷维修系统，解决传统路灯能耗高、寿命短、维修难三大痛点。"
 ---
 
