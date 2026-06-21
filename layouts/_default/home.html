@@ -109,20 +109,6 @@
             </div>
         </div>
 
-        <!-- 右侧大图：不独立存在，由 JavaScript 读取左侧小图数据动态赋值渲染 -->
-        <div id="compBigImageContainer" class="lg:flex-1 min-h-[360px] lg:min-h-[420px] rounded-2xl overflow-hidden shadow-xl bg-gray-200 relative group cursor-pointer">
-            <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23334155%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2224%22%3E%E7%AB%9E%E8%B5%9B%E5%9B%BE%E7%89%87%3C/text%3E%3C/svg%3E" 
-                alt="竞赛成果展示"
-                class="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:scale-105"
-                id="compBigImage"
-                onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23334155%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2224%22%3E%E7%AB%9E%E8%B5%9B%E5%9B%BE%E7%89%87%3C/text%3E%3C/svg%3E';">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
-            
-            <div class="absolute bottom-6 left-6 right-6 text-white z-10 transition-all duration-300" id="compBigText">
-                <!-- 由 JavaScript 动态填充 -->
-            </div>
-        </div>
     </div>
 
     <!-- ====== 科研板块 ====== -->
@@ -354,46 +340,7 @@
                 img.src = url;
             }
 
-            // 更新大图及大图内容的渲染逻辑
-            function setActive(index) {
-                currentIndex = index;
-                
-                items.forEach((el, i) => {
-                    const isCurrent = (i === index);
-                    el.classList.toggle('bg-[#A31F34]/5', isCurrent);
-                    el.classList.toggle('border-[#A31F34]/30', isCurrent);
-                    
-                    const textWrap = el.querySelector('.text-content');
-                    const title = el.querySelector('.text-title');
-                    
-                    if (textWrap) isCurrent ? textWrap.classList.add('translate-x-2') : textWrap.classList.remove('translate-x-2');
-                    if (title) isCurrent ? title.classList.add('text-[#A31F34]') : title.classList.remove('text-[#A31F34]');
-                });
 
-                const target = items[index];
-                if (target) {
-                    // 读取被激活节点上完整的 Hugo 处理后路径，实现两边无缝实时映射
-                    const imgSrc = target.getAttribute('data-image');
-                    const title = target.getAttribute('data-title');
-                    const summary = target.getAttribute('data-summary');
-                    const link = target.getAttribute('data-link');
-
-                    // 将小图路径、点击事件传递渲染至右侧大图上
-                    setBigSrc(imgSrc);
-                    bigImageContainer.onclick = () => location.href = link;
-
-                    if (bigTextContainer) {
-                        bigTextContainer.style.opacity = '0';
-                        setTimeout(() => {
-                            bigTextContainer.innerHTML = `
-                                <h3 class="text-xl lg:text-2xl font-serif font-bold drop-shadow-md mb-2">${title}</h3>
-                                <p class="text-sm text-white/90 drop-shadow-sm line-clamp-2">${summary}</p>
-                            `;
-                            bigTextContainer.style.opacity = '1';
-                        }, 150);
-                    }
-                }
-            }
 
             function startAutoplay() {
                 stopAutoplay();
