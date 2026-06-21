@@ -1,4 +1,4 @@
-{{ define "main" }}
+
 
 <style>
     /* 滚动淡入动画基础样式 */
@@ -15,7 +15,7 @@
 </style>
 
 <!-- ============================================================ -->
-<!-- 1. 全屏轮播大图（根相对路径，保留原始 db_images 目录结构）  -->
+<!-- 1. 全屏轮播大图（已修复 db_images 拼写错误）  -->
 <!-- ============================================================ -->
 <div class="relative w-full h-screen bg-gray-900 overflow-hidden">
     <div class="swiper heroSwiper w-full h-full">
@@ -56,7 +56,7 @@
 <!-- ============================================================ -->
 <div id="panels" class="max-w-[1800px] mx-auto px-4 py-16 overflow-hidden">
 
-    <!-- ====== 竞赛板块（附带 fade-in-section 滚动动画） ====== -->
+    <!-- ====== 竞赛板块 ====== -->
     <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 mb-20 fade-in-section">
         <div class="lg:w-2/5 flex-shrink-0">
             <div class="mb-6">
@@ -70,7 +70,17 @@
                 {{ $compPages := where .Site.RegularPages "Section" "competition" | first 5 }}
                 {{ if $compPages }}
                     {{ range $index, $page := $compPages }}
-                    {{ $img := .Params.featured_image | default "/images/default-competition.jpg" | relURL }}
+                    {{/* 路径自适应：Hugo后端补全完整的相对路径，消除不同部署环境的兼容差异 */}}
+                    {{ $img := .Params.featured_image }}
+                    {{ if $img }}
+                        {{ if not (hasPrefix $img "/") }}
+                            {{ $img = printf "%s%s" .RelPermalink $img }}
+                        {{ end }}
+                    {{ else }}
+                        {{ $img = "/images/default-competition.jpg" }}
+                    {{ end }}
+                    {{ $img = $img | replaceRE "db_imsges" "db_images" | replaceRE "tiaozhenbei" "tiaozhanbei" | relURL }}
+                    
                     <a href="{{ .Permalink }}" 
                     class="competition-item group flex items-center gap-4 p-3 rounded-lg transition-all duration-300 border border-transparent hover:bg-[#A31F34]/5 hover:border-[#A31F34]/20"
                     data-image="{{ $img }}"
@@ -101,14 +111,17 @@
 
         <!-- 右侧大图 -->
         <div id="compBigImageContainer" class="lg:flex-1 min-h-[360px] lg:min-h-[420px] rounded-2xl overflow-hidden shadow-xl bg-gray-200 relative group cursor-pointer">
-            <!-- 修复 Hugo 渲染潜在崩溃 Bug，先判断数组是否有值 -->
             {{ $firstComp := false }}
             {{ $firstImg := "/images/default-competition.jpg" | relURL }}
             {{ $compPagesList := where .Site.RegularPages "Section" "competition" }}
             {{ if gt (len $compPagesList) 0 }}
                 {{ $firstComp = index $compPagesList 0 }}
                 {{ with $firstComp.Params.featured_image }}
-                    {{ $firstImg = . | relURL }}
+                    {{ $firstImg = . }}
+                    {{ if not (hasPrefix $firstImg "/") }}
+                        {{ $firstImg = printf "%s%s" $firstComp.RelPermalink $firstImg }}
+                    {{ end }}
+                    {{ $firstImg = $firstImg | replaceRE "db_imsges" "db_images" | replaceRE "tiaozhenbei" "tiaozhanbei" | relURL }}
                 {{ end }}
             {{ end }}
             
@@ -150,7 +163,16 @@
             {{ $researchPages := where .Site.RegularPages "Section" "research" | first 3 }}
             {{ if $researchPages }}
                 {{ range $researchPages }}
-                {{ $img := .Params.featured_image | default "/images/default-research.jpg" | relURL }}
+                {{ $img := .Params.featured_image }}
+                {{ if $img }}
+                    {{ if not (hasPrefix $img "/") }}
+                        {{ $img = printf "%s%s" .RelPermalink $img }}
+                    {{ end }}
+                {{ else }}
+                    {{ $img = "/images/default-research.jpg" }}
+                {{ end }}
+                {{ $img = $img | replaceRE "db_imsges" "db_images" | replaceRE "tiaozhenbei" "tiaozhanbei" | relURL }}
+                
                 <a href="{{ .Permalink }}" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
                     <div class="aspect-[16/9] bg-gray-200 overflow-hidden relative">
                         <img src="{{ $img }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -190,7 +212,16 @@
             {{ $studyPages := where .Site.RegularPages "Section" "study" | first 3 }}
             {{ if $studyPages }}
                 {{ range $studyPages }}
-                {{ $img := .Params.featured_image | default "/images/default-study.jpg" | relURL }}
+                {{ $img := .Params.featured_image }}
+                {{ if $img }}
+                    {{ if not (hasPrefix $img "/") }}
+                        {{ $img = printf "%s%s" .RelPermalink $img }}
+                    {{ end }}
+                {{ else }}
+                    {{ $img = "/images/default-study.jpg" }}
+                {{ end }}
+                {{ $img = $img | replaceRE "db_imsges" "db_images" | replaceRE "tiaozhenbei" "tiaozhanbei" | relURL }}
+                
                 <a href="{{ .Permalink }}" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
                     <div class="aspect-[16/9] bg-gray-200 overflow-hidden relative">
                         <img src="{{ $img }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -230,7 +261,16 @@
             {{ $activityPages := where .Site.RegularPages "Section" "activities" | first 3 }}
             {{ if $activityPages }}
                 {{ range $activityPages }}
-                {{ $img := .Params.featured_image | default "/images/default-activities.jpg" | relURL }}
+                {{ $img := .Params.featured_image }}
+                {{ if $img }}
+                    {{ if not (hasPrefix $img "/") }}
+                        {{ $img = printf "%s%s" .RelPermalink $img }}
+                    {{ end }}
+                {{ else }}
+                    {{ $img = "/images/default-activities.jpg" }}
+                {{ end }}
+                {{ $img = $img | replaceRE "db_imsges" "db_images" | replaceRE "tiaozhenbei" "tiaozhanbei" | relURL }}
+                
                 <a href="{{ .Permalink }}" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
                     <div class="aspect-[16/9] bg-gray-200 overflow-hidden relative">
                         <img src="{{ $img }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -298,7 +338,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         
         // --------------------------------------------------------
-        // 1. 竞赛板块大图悬停联动逻辑优化
+        // 1. 竞赛板块大图悬停联动逻辑（简化安全方案）
         // --------------------------------------------------------
         const items = document.querySelectorAll('#compList .competition-item');
         const bigImage = document.getElementById('compBigImage');
@@ -310,16 +350,17 @@
             let autoplayTimer = null;
             const AUTOPLAY_INTERVAL = 3500;
 
-            // 修复: 完全转换并 URL 编码的占位 SVG，防止浏览器解析错误
             const fallbackSrc = "data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23334155%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2224%22%3E%E7%AB%9E%E8%B5%9B%E5%9B%BE%E7%89%87%3C/text%3E%3C/svg%3E";
 
-            // 优化图片重载逻辑: 使用更直接的方法防止不加载
+            // 直接信任后端生成的绝无差错的 data-image 绝对根路径或完美相对路径
             function setBigSrc(url) {
                 if (!url) {
                     bigImage.src = fallbackSrc;
                     return;
                 }
+                
                 bigImage.style.opacity = '0.5';
+                
                 const img = new Image();
                 img.onload = () => {
                     bigImage.src = url;
