@@ -1,0 +1,123 @@
+{{ define "main" }}
+<style>
+    /* 列表页背景与标题 */
+    .travel-header {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+    .travel-header h1 {
+        text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    /* 卡片入场动画 */
+    @keyframes cardUp {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    .travel-card {
+        animation: cardUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+    }
+    .travel-card:nth-child(1) { animation-delay: 0.1s; }
+    .travel-card:nth-child(2) { animation-delay: 0.2s; }
+    .travel-card:nth-child(3) { animation-delay: 0.3s; }
+    .travel-card:nth-child(4) { animation-delay: 0.4s; }
+    .travel-card:nth-child(5) { animation-delay: 0.5s; }
+    .travel-card:nth-child(6) { animation-delay: 0.6s; }
+
+    .travel-card:hover {
+        transform: translateY(-6px) rotateX(1deg);
+        box-shadow: 0 20px 30px -10px rgba(163, 31, 52, 0.3), 0 0 0 2px rgba(163, 31, 52, 0.4);
+    }
+
+    /* 图片缓慢放大 */
+    .travel-card .card-img {
+        transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .travel-card:hover .card-img {
+        transform: scale(1.1);
+    }
+
+    /* 地点标签 */
+    .location-tag {
+        background: rgba(163, 31, 52, 0.1);
+        color: #A31F34;
+        border: 1px solid rgba(163, 31, 52, 0.2);
+        transition: all 0.3s;
+    }
+    .travel-card:hover .location-tag {
+        background: #A31F34;
+        color: white;
+    }
+
+    /* 查看更多按钮渐显 */
+    .read-more {
+        opacity: 0;
+        transform: translateX(10px);
+        transition: all 0.4s;
+    }
+    .travel-card:hover .read-more {
+        opacity: 1;
+        transform: translateX(0);
+    }
+</style>
+
+<!-- 顶部横幅 -->
+<div class="travel-header py-20 px-4 text-center text-white">
+    <div class="max-w-4xl mx-auto">
+        <span class="text-sm font-semibold tracking-widest uppercase opacity-70">Travel Diary</span>
+        <h1 class="text-4xl lg:text-5xl font-serif font-bold mt-3">旅行日记</h1>
+        <p class="mt-4 text-white/60 max-w-xl mx-auto leading-relaxed">
+            用脚步丈量世界，用镜头记录时光。每一次出发，都是与未知的对话。
+        </p>
+    </div>
+</div>
+
+<!-- 卡片列表 -->
+<div class="max-w-[1800px] mx-auto px-4 py-16">
+    {{ $pages := .Pages }}
+    {{ if $pages }}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {{ range $pages }}
+        {{ $img := .Params.featured_image | default "/images/default-travel.jpg" }}
+        {{ $img = replaceRE "^.*?/static/" "/" $img }}
+        {{ $img = $img | relURL }}
+        <div class="travel-card bg-white rounded-xl overflow-hidden shadow-md flex flex-col">
+            <!-- 图片区域 -->
+            <div class="relative h-56 overflow-hidden">
+                <div class="card-img absolute inset-0 bg-cover bg-center"
+                     style="background-image: url('{{ $img }}');"
+                     onerror="this.onerror=null; this.style.backgroundImage='url(\'data:image/svg+xml,...\')';">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                <!-- 地点标签悬浮于图片底部 -->
+                {{ with .Params.location }}
+                <div class="absolute bottom-3 left-3 location-tag text-xs font-medium px-2 py-1 rounded-full">
+                    📍 {{ . }}
+                </div>
+                {{ end }}
+            </div>
+            <!-- 文字内容 -->
+            <div class="p-5 flex flex-col flex-1">
+                <span class="text-xs text-gray-400">{{ .Date.Format "2006-01-02" }}</span>
+                <h3 class="text-xl font-serif font-bold text-gray-900 mt-2 line-clamp-2">{{ .Title }}</h3>
+                {{ with .Summary }}
+                <p class="text-sm text-gray-500 mt-2 line-clamp-3 flex-1">{{ . }}</p>
+                {{ end }}
+                <div class="mt-4 flex items-center justify-between">
+                    <span class="read-more text-sm font-medium text-[#A31F34] flex items-center">
+                        阅读全文 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </div>
+            </div>
+            <a href="{{ .Permalink }}" class="absolute inset-0" aria-label="{{ .Title }}"></a>
+        </div>
+        {{ end }}
+    </div>
+    {{ else }}
+    <div class="text-center py-20 text-gray-400">
+        <p class="text-2xl">🌍 还没有旅行记录</p>
+        <p class="mt-2">快出发吧，世界等着你的故事。</p>
+    </div>
+    {{ end }}
+</div>
+{{ end }}
