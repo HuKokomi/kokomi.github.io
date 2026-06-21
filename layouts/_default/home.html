@@ -1,4 +1,4 @@
-
+{{ define "main" }}
 
 <style>
     /* 滚动淡入动画基础样式 */
@@ -109,23 +109,10 @@
             </div>
         </div>
 
-        <!-- 右侧大图 -->
+        <!-- 右侧大图：不独立存在，由 JavaScript 读取左侧小图数据动态赋值渲染 -->
         <div id="compBigImageContainer" class="lg:flex-1 min-h-[360px] lg:min-h-[420px] rounded-2xl overflow-hidden shadow-xl bg-gray-200 relative group cursor-pointer">
-            {{ $firstComp := false }}
-            {{ $firstImg := "/images/default-competition.jpg" | relURL }}
-            {{ $compPagesList := where .Site.RegularPages "Section" "competition" }}
-            {{ if gt (len $compPagesList) 0 }}
-                {{ $firstComp = index $compPagesList 0 }}
-                {{ with $firstComp.Params.featured_image }}
-                    {{ $firstImg = . }}
-                    {{ if not (hasPrefix $firstImg "/") }}
-                        {{ $firstImg = printf "%s%s" $firstComp.RelPermalink $firstImg }}
-                    {{ end }}
-                    {{ $firstImg = $firstImg | replaceRE "db_imsges" "db_images" | replaceRE "tiaozhenbei" "tiaozhanbei" | relURL }}
-                {{ end }}
-            {{ end }}
-            
-            <img src="{{ $firstImg }}" alt="{{ if $firstComp }}{{ $firstComp.Title }}{{ else }}竞赛成果展示{{ end }}"
+            <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23334155%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2224%22%3E%E7%AB%9E%E8%B5%9B%E5%9B%BE%E7%89%87%3C/text%3E%3C/svg%3E" 
+                alt="竞赛成果展示"
                 class="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:scale-105"
                 id="compBigImage"
                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23334155%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2224%22%3E%E7%AB%9E%E8%B5%9B%E5%9B%BE%E7%89%87%3C/text%3E%3C/svg%3E';">
@@ -133,13 +120,7 @@
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
             
             <div class="absolute bottom-6 left-6 right-6 text-white z-10 transition-all duration-300" id="compBigText">
-                {{ if $firstComp }}
-                    <h3 class="text-xl lg:text-2xl font-serif font-bold drop-shadow-md">{{ $firstComp.Title }}</h3>
-                    <p class="text-sm text-white/90 drop-shadow-sm mt-1 line-clamp-2">{{ $firstComp.Summary }}</p>
-                {{ else }}
-                    <h3 class="text-xl font-serif font-bold">竞赛成果展示</h3>
-                    <p class="text-sm text-white/80">敬请期待更多精彩内容</p>
-                {{ end }}
+                <!-- 由 JavaScript 动态填充 -->
             </div>
         </div>
     </div>
@@ -338,7 +319,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         
         // --------------------------------------------------------
-        // 1. 竞赛板块大图悬停联动逻辑（简化安全方案）
+        // 1. 竞赛板块大图悬停联动逻辑（完美直接映射，零独立余数）
         // --------------------------------------------------------
         const items = document.querySelectorAll('#compList .competition-item');
         const bigImage = document.getElementById('compBigImage');
@@ -352,7 +333,7 @@
 
             const fallbackSrc = "data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23334155%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2224%22%3E%E7%AB%9E%E8%B5%9B%E5%9B%BE%E7%89%87%3C/text%3E%3C/svg%3E";
 
-            // 直接信任后端生成的绝无差错的 data-image 绝对根路径或完美相对路径
+            // 直接读取左侧小图传递过来的、后端已经生成无差错的 data-image 绝对/相对完整路径
             function setBigSrc(url) {
                 if (!url) {
                     bigImage.src = fallbackSrc;
@@ -373,6 +354,7 @@
                 img.src = url;
             }
 
+            // 更新大图及大图内容的渲染逻辑
             function setActive(index) {
                 currentIndex = index;
                 
@@ -390,11 +372,13 @@
 
                 const target = items[index];
                 if (target) {
+                    // 读取被激活节点上完整的 Hugo 处理后路径，实现两边无缝实时映射
                     const imgSrc = target.getAttribute('data-image');
                     const title = target.getAttribute('data-title');
                     const summary = target.getAttribute('data-summary');
                     const link = target.getAttribute('data-link');
 
+                    // 将小图路径、点击事件传递渲染至右侧大图上
                     setBigSrc(imgSrc);
                     bigImageContainer.onclick = () => location.href = link;
 
@@ -437,6 +421,7 @@
             bigImageContainer.addEventListener('mouseenter', stopAutoplay);
             bigImageContainer.addEventListener('mouseleave', startAutoplay);
 
+            // 初始化：由于右侧模块不独立运算，第一项内容直接在初始化时投射大图上
             setActive(0);
             startAutoplay();
         }
