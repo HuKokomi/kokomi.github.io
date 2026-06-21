@@ -5,7 +5,7 @@ draft: false
 Weight: 4
 categories: ["竞赛动态"]
 tags: ["挑战杯", "揭榜挂帅", "量子模拟", "雷达目标识别", "多无人机协同"]
-featured_image: "/competition/tiaozhenbei202501/0938eb692da1fb69fb3b2cf5763b682c.jpg"
+featured_image: "/static/competition/tiaozhenbei202501/0938eb692da1fb69fb3b2cf5763b682c.jpg"
 summary: "在第十八届“挑战杯”全国大学生课外学术科技作品竞赛“揭榜挂帅”专项赛中，本人参与指导的三个项目分别获得全国二等奖和两项优胜奖，涉及量子多体系统、低空雷达识别与多智能体决策等前沿方向。"
 ---
 
