@@ -5,7 +5,7 @@ draft: false
 Weight: 1
 categories: ["竞赛动态"]
 tags: ["挑战杯", "人工智能+", "慢阻肺", "医疗监测", "超声AI"]
-featured_image: "/kokomi.github.io/static/competition/tiaozhanbei202502/3a9b6093e13d3d1a70d0ff7ff2f85a5b.jpg"
+featured_image: "competition/tiaozhanbei202502/3a9b6093e13d3d1a70d0ff7ff2f85a5b.jpg"
 summary: "项目“肺腑之研——便携式慢阻肺AI监测设备开创者”荣获第十八届“挑战杯”全国大学生课外学术科技作品竞赛“人工智能+”专项赛全国特等奖及第十二届“青苗杯”安徽省项目资本对接活动省级银奖。项目自研DDS调频检测电路与超声映射模型，实现全球首创的COPD家庭智能监测。"
 ---
 

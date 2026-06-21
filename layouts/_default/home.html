@@ -59,7 +59,7 @@
     }
 </style>
 
-<!-- 全屏轮播 -->
+<!-- 全屏轮播大图 -->
 <div class="relative w-full h-screen bg-gray-900 overflow-hidden">
     <div class="swiper heroSwiper w-full h-full">
         <div class="swiper-wrapper">
@@ -105,7 +105,9 @@
                 {{ $compPages := where .Site.RegularPages "Section" "competition" | first 5 }}
                 {{ if $compPages }}
                     {{ range $index, $page := $compPages }}
+                    {{/* 移除可能误写入的本地绝对路径前缀，确保是站点根路径 */}}
                     {{ $img := .Params.featured_image | default "/images/default-competition.jpg" }}
+                    {{ $img = replaceRE "^.*?/static/" "/" $img }}
                     {{ $img = $img | relURL }}
                     
                     <div class="competition-item flex items-center gap-4 p-3 rounded-lg border border-transparent"
@@ -154,6 +156,7 @@
             {{ if $researchPages }}
                 {{ range $researchPages }}
                 {{ $img := .Params.featured_image | default "/images/default-research.jpg" }}
+                {{ $img = replaceRE "^.*?/static/" "/" $img }}
                 {{ $img = $img | relURL }}
                 <a href="{{ .Permalink }}" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
                     <div class="aspect-[16/9] bg-gray-200 overflow-hidden relative">
@@ -194,6 +197,7 @@
             {{ if $studyPages }}
                 {{ range $studyPages }}
                 {{ $img := .Params.featured_image | default "/images/default-study.jpg" }}
+                {{ $img = replaceRE "^.*?/static/" "/" $img }}
                 {{ $img = $img | relURL }}
                 <a href="{{ .Permalink }}" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
                     <div class="aspect-[16/9] bg-gray-200 overflow-hidden relative">
@@ -234,6 +238,7 @@
             {{ if $activityPages }}
                 {{ range $activityPages }}
                 {{ $img := .Params.featured_image | default "/images/default-activities.jpg" }}
+                {{ $img = replaceRE "^.*?/static/" "/" $img }}
                 {{ $img = $img | relURL }}
                 <a href="{{ .Permalink }}" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
                     <div class="aspect-[16/9] bg-gray-200 overflow-hidden relative">
@@ -292,7 +297,6 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // 竞赛大图联动
         (function() {
             const items = document.querySelectorAll('#compList .competition-item');
             const bigImage = document.getElementById('compBigImage');
@@ -339,7 +343,6 @@
             startAutoplay();
         })();
 
-        // 滚动淡入
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
