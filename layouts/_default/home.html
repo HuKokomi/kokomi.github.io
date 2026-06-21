@@ -42,7 +42,7 @@
 <!-- ============================================================ -->
 <div id="panels" class="max-w-[1800px] mx-auto px-4 py-16">
 
-    <!-- ====== 竞赛板块 ====== -->
+    <!-- ====== 竞赛板块（重构：右侧大图采用 img 标签，与左侧小图加载方式一致） ====== -->
     <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 mb-20">
         <div class="lg:w-2/5 flex-shrink-0">
             <div class="mb-6">
@@ -58,15 +58,15 @@
                     {{ range $index, $page := $compPages }}
                     {{ $img := .Params.featured_image | default "/images/default-competition.jpg" }}
                     <a href="{{ .Permalink }}" 
-                       class="competition-item group flex items-center gap-4 p-3 rounded-lg transition-all duration-300 border border-transparent hover:bg-[#A31F34]/5 hover:border-[#A31F34]/20"
-                       data-image="{{ $img }}"
-                       data-title="{{ .Title }}"
-                       data-summary="{{ .Summary | plainify | truncate 80 }}"
-                       data-link="{{ .Permalink }}">
+                    class="competition-item group flex items-center gap-4 p-3 rounded-lg transition-all duration-300 border border-transparent hover:bg-[#A31F34]/5 hover:border-[#A31F34]/20"
+                    data-image="{{ $img }}"
+                    data-title="{{ .Title }}"
+                    data-summary="{{ .Summary | plainify | truncate 80 }}"
+                    data-link="{{ .Permalink }}">
                         
                         <div class="w-20 h-16 flex-shrink-0 rounded-md overflow-hidden bg-gray-200 relative">
                             <img src="{{ $img }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2264%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%228%22%3E%E6%9A%82%E6%97%A0%3C/text%3E%3C/svg%3E';">
+                                onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2264%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%228%22%3E%E6%9A%82%E6%97%A0%3C/text%3E%3C/svg%3E';">
                             <div class="absolute inset-0 bg-white/0 transition-colors duration-300 group-hover:bg-white/10"></div>
                         </div>
 
@@ -85,34 +85,32 @@
             </div>
         </div>
 
-    <!-- 右侧大图（改为 img 标签，与左侧小图加载方式完全一致） -->
-    <div id="compBigImageContainer" class="lg:flex-1 min-h-[360px] lg:min-h-[420px] rounded-2xl overflow-hidden shadow-xl bg-gray-200 relative group cursor-pointer">
-        {{ $firstComp := index (where .Site.RegularPages "Section" "competition" | first 1) 0 }}
-        {{ $firstImg := "/images/default-competition.jpg" }}
-        {{ if $firstComp }}
-            {{ with $firstComp.Params.featured_image }}
-                {{ $firstImg = . }}
-            {{ end }}
-        {{ end }}
-        
-        <!-- 核心改动：用 img 标签替代背景图 -->
-        <img src="{{ $firstImg }}" alt="{{ if $firstComp }}{{ $firstComp.Title }}{{ else }}竞赛成果展示{{ end }}"
-            class="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:scale-105"
-            id="compBigImage"
-            onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23334155%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2224%22%3E%E7%AB%9E%E8%B5%9B%E5%9B%BE%E7%89%87%3C/text%3E%3C/svg%3E';">
-        
-        <!-- 蒙版层保留 -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
-        
-        <!-- 文字层保留 -->
-        <div class="absolute bottom-6 left-6 right-6 text-white z-10 transition-all duration-300" id="compBigText">
+        <!-- 右侧大图（重构：img 标签 + 对应 JS 联动） -->
+        <div id="compBigImageContainer" class="lg:flex-1 min-h-[360px] lg:min-h-[420px] rounded-2xl overflow-hidden shadow-xl bg-gray-200 relative group cursor-pointer">
+            {{ $firstComp := index (where .Site.RegularPages "Section" "competition" | first 1) 0 }}
+            {{ $firstImg := "/images/default-competition.jpg" }}
             {{ if $firstComp }}
-                <h3 class="text-xl lg:text-2xl font-serif font-bold drop-shadow-md">{{ $firstComp.Title }}</h3>
-                <p class="text-sm text-white/90 drop-shadow-sm mt-1 line-clamp-2">{{ $firstComp.Summary }}</p>
-            {{ else }}
-                <h3 class="text-xl font-serif font-bold">竞赛成果展示</h3>
-                <p class="text-sm text-white/80">敬请期待更多精彩内容</p>
+                {{ with $firstComp.Params.featured_image }}
+                    {{ $firstImg = . }}
+                {{ end }}
             {{ end }}
+            
+            <img src="{{ $firstImg }}" alt="{{ if $firstComp }}{{ $firstComp.Title }}{{ else }}竞赛成果展示{{ end }}"
+                class="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:scale-105"
+                id="compBigImage"
+                onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22450%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23334155%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2224%22%3E%E7%AB%9E%E8%B5%9B%E5%9B%BE%E7%89%87%3C/text%3E%3C/svg%3E';">
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
+            
+            <div class="absolute bottom-6 left-6 right-6 text-white z-10 transition-all duration-300" id="compBigText">
+                {{ if $firstComp }}
+                    <h3 class="text-xl lg:text-2xl font-serif font-bold drop-shadow-md">{{ $firstComp.Title }}</h3>
+                    <p class="text-sm text-white/90 drop-shadow-sm mt-1 line-clamp-2">{{ $firstComp.Summary }}</p>
+                {{ else }}
+                    <h3 class="text-xl font-serif font-bold">竞赛成果展示</h3>
+                    <p class="text-sm text-white/80">敬请期待更多精彩内容</p>
+                {{ end }}
+            </div>
         </div>
     </div>
 
@@ -282,7 +280,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const items = document.querySelectorAll('#compList .competition-item');
-        const bigImage = document.getElementById('compBigImage');
+        const bigImage = document.getElementById('compBigImage');  // 现在是 img 元素
         const bigImageContainer = document.getElementById('compBigImageContainer');
         const bigTextContainer = document.getElementById('compBigText');
 
@@ -292,8 +290,10 @@
         let autoplayTimer = null;
         const AUTOPLAY_INTERVAL = 3500;
 
-        const fallbackBg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450'%3E%3Crect width='100%25' height='100%25' fill='%23334155'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%2394a3b8' font-family='sans-serif' font-size='24'%3E%E7%AB%9E%E8%B5%9B%E5%9B%BE%E7%89%87%3C/text%3E%3C/svg%3E";
+        // 内置占位 SVG（与 onerror 统一）
+        const fallbackSrc = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450'%3E%3Crect width='100%25' height='100%25' fill='%23334155'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%2394a3b8' font-family='sans-serif' font-size='24'%3E%E7%AB%9E%E8%B5%9B%E5%9B%BE%E7%89%87%3C/text%3E%3C/svg%3E";
 
+        // 检测图片是否可加载
         function testImage(url, callback) {
             const img = new Image();
             img.onload = () => callback(true);
@@ -301,12 +301,12 @@
             img.src = url;
         }
 
-        function setBigBackground(url) {
-            bigImage.style.backgroundImage = `url('${url}')`;
+        // 设置大图的 src，并自动回退
+        function setBigSrc(url) {
+            bigImage.style.opacity = '0.6';
             testImage(url, (success) => {
-                if (!success) {
-                    bigImage.style.backgroundImage = `url('${fallbackBg}')`;
-                }
+                bigImage.src = success ? url : fallbackSrc;
+                bigImage.style.opacity = '1';
             });
         }
 
@@ -336,14 +336,13 @@
                 const summary = target.getAttribute('data-summary');
                 const link = target.getAttribute('data-link');
 
-                bigImage.style.opacity = '0.6';
-                setTimeout(() => {
-                    setBigBackground(imgSrc);
-                    bigImage.style.opacity = '1';
-                }, 150);
+                // 切换大图
+                setBigSrc(imgSrc);
 
+                // 更新点击跳转
                 bigImageContainer.onclick = () => location.href = link;
 
+                // 更新文字
                 if (bigTextContainer) {
                     bigTextContainer.style.opacity = '0';
                     setTimeout(() => {
@@ -387,11 +386,12 @@
         bigImageContainer.addEventListener('mouseenter', stopAutoplay);
         bigImageContainer.addEventListener('mouseleave', startAutoplay);
 
-        const initialBg = bigImage.style.backgroundImage.slice(5, -2);
-        if (initialBg) {
-            testImage(initialBg, (success) => {
+        // 初始加载时检测默认图片是否有效
+        const initialSrc = bigImage.getAttribute('src');
+        if (initialSrc) {
+            testImage(initialSrc, (success) => {
                 if (!success) {
-                    bigImage.style.backgroundImage = `url('${fallbackBg}')`;
+                    bigImage.src = fallbackSrc;
                 }
             });
         }
