@@ -44,7 +44,8 @@
     .article-body img {
         border-radius: 12px;
         box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
-        margin: 2rem auto;
+        margin: 2rem auto;       /* 已有 */
+        display: block;          /* 新增，确保 margin auto 生效 */
         transition: transform 0.3s ease;
     }
     .article-body img:hover {
@@ -70,6 +71,24 @@
         background: #A31F34;
         color: white;
         border-color: transparent;
+    }
+
+    /* 让 figure 整体居中，图片和标题都在页面中排列 */
+    .article-body figure {
+        text-align: center;
+        margin: 2rem auto;
+    }
+    .article-body figure img {
+        display: inline-block; /* 或 block，配合 margin auto 居中 */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    /* 图片标题居中 */
+    .article-body figcaption {
+        text-align: center;
+        color: #64748b;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
     }
 </style>
 
