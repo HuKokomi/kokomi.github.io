@@ -3,6 +3,7 @@ title: "基于Carla的智能车辆跟车场景自适应巡航研究"
 date: 2026-06-20
 draft: false
 math: true
+weight: 1
 featured_image: "/db_imsges/Research/e480f8c4-fda0-4d2d-880d-58a60730b4cf.png"
 summary: "本研究基于Carla仿真平台，设计并实现了模型预测控制（MPC）的分层自适应巡航系统，在典型跟车场景中验证了其在稳定性、速度跟踪精度和乘坐舒适性方面均显著优于传统PID控制。"
 ---
