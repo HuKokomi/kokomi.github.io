@@ -69,28 +69,22 @@
         clip-path: inset(2px 2px 2px 2px); /* 稍微裁剪出圆润感 */
     }
 
-    /* 毛玻璃底部信息栏 */
+    /* 底部信息栏 – 默认深色半透明，悬停变为北大红 */
     .honor-card .card-info {
-        background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 80%, transparent 100%);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+        background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 100%);
+        transition: background 0.5s ease, transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1.2);
         padding: 1.5rem 1.25rem 1.25rem;
     }
     .honor-card:hover .card-info {
+        background: linear-gradient(to top, #A31F34 0%, rgba(163, 31, 52, 0.85) 70%, rgba(163, 31, 52, 0.3) 100%);
         transform: translateY(-6px);
     }
 
-    /* 标题下划线动画（从中间向两边） */
+    /* 标题下划线颜色改为白色（因背景变红） */
     .honor-card .title-underline {
-        width: 0;
-        height: 2px;
         background: #fff;
-        margin: 0.5rem 0 0.75rem;
-        transform: scaleX(0);
-        transform-origin: center;
-        transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1.2);
     }
+
     .honor-card:hover .title-underline {
         transform: scaleX(1);
     }
