@@ -3,8 +3,7 @@
     /* ========== 全局变量 ========== */
     :root {
         --primary: #A31F34;
-        --primary-light: rgba(163, 31, 52, 0.1);
-        --shadow-color: 163, 31, 52;
+        --primary-rgb: 163, 31, 52;
     }
 
     /* ========== 分区淡入 ========== */
@@ -34,12 +33,10 @@
     .honor-card {
         animation: honorCardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
         transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1.2), 
-                    box-shadow 0.5s ease, 
-                    border-color 0.4s;
+                    box-shadow 0.5s ease;
         will-change: transform, box-shadow;
-        border: 1px solid rgba(255,255,255,0.2);
     }
-    /* 交错延迟（支持无限多卡片） */
+    /* 交错延迟 */
     .honor-card:nth-child(1) { animation-delay: 0.05s; }
     .honor-card:nth-child(2) { animation-delay: 0.13s; }
     .honor-card:nth-child(3) { animation-delay: 0.21s; }
@@ -48,62 +45,120 @@
     .honor-card:nth-child(6) { animation-delay: 0.45s; }
     .honor-card:nth-child(7) { animation-delay: 0.53s; }
     .honor-card:nth-child(8) { animation-delay: 0.61s; }
-    .honor-card:nth-child(n+9) { animation-delay: 0.7s; } /* 第9个之后统一延迟 */
+    .honor-card:nth-child(n+9) { animation-delay: 0.7s; }
 
     /* ========== 卡片悬浮效果 ========== */
     .honor-card:hover {
         transform: translateY(-10px) rotateX(1.5deg) rotateY(-1deg);
-        box-shadow: 0 30px 45px -15px rgba(var(--shadow-color), 0.4),
-                    0 0 0 2px rgba(var(--shadow-color), 0.5);
-        border-color: rgba(var(--shadow-color), 0.6);
+        box-shadow: 0 30px 45px -15px rgba(var(--primary-rgb), 0.35),
+                    0 0 0 2px rgba(var(--primary-rgb), 0.4);
         z-index: 10;
     }
 
-    /* 图片缩放 */
+    /* ---------- 图片区域 ---------- */
+    .honor-card .card-img-wrapper {
+        overflow: hidden;
+        height: 12rem; /* 48 = h-48 */
+    }
+    @media (min-width: 768px) {
+        .honor-card .card-img-wrapper {
+            height: 14rem; /* md:h-56 */
+        }
+    }
     .honor-card .card-img {
-        transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), clip-path 0.8s ease;
-        clip-path: inset(0 0 0 0);
+        transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .honor-card:hover .card-img {
         transform: scale(1.12);
-        clip-path: inset(2px 2px 2px 2px); /* 稍微裁剪出圆润感 */
     }
 
-    /* 底部信息栏 – 默认深色半透明，悬停变为北大红 */
+    /* 图片加载失败占位 */
+    .honor-card .img-fallback {
+        background: #f1f5f9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #94a3b8;
+    }
+
+    /* ---------- 文字区域 ---------- */
     .honor-card .card-info {
-        background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 100%);
-        transition: background 0.5s ease, transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1.2);
-        padding: 1.5rem 1.25rem 1.25rem;
+        position: relative;
+        background: white;
+        padding: 1rem 1.25rem 1.25rem;
+        overflow: hidden; /* 为了伪元素溢出隐藏 */
+        transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+    }
+    /* 北大红滑动背景层 */
+    .honor-card .card-info::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--primary);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+        z-index: 0;
+    }
+    .honor-card:hover .card-info::before {
+        transform: scaleX(1);
     }
     .honor-card:hover .card-info {
-        background: linear-gradient(to top, #A31F34 0%, rgba(163, 31, 52, 0.85) 70%, rgba(163, 31, 52, 0.3) 100%);
-        transform: translateY(-6px);
+        transform: translateY(-4px);
     }
 
-    /* 标题下划线颜色改为白色（因背景变红） */
+    /* 文字内容需要置于伪元素上方 */
+    .honor-card .card-info > * {
+        position: relative;
+        z-index: 1;
+        transition: color 0.3s;
+    }
+    /* 悬停时文字变为白色 */
+    .honor-card:hover .card-info h3,
+    .honor-card:hover .card-info .date-tag,
+    .honor-card:hover .card-info .view-detail {
+        color: white;
+    }
+    .honor-card .card-info h3 {
+        color: #1f2937; /* 深灰 */
+        transition: color 0.3s, transform 0.4s ease;
+    }
+    .honor-card .card-info .date-tag {
+        color: #6b7280;
+        transition: color 0.3s;
+    }
+    .honor-card .card-info .view-detail {
+        color: var(--primary);
+        transition: color 0.3s;
+    }
+
+    /* 文字放大效果 */
+    .honor-card:hover .card-info h3 {
+        transform: scale(1.03);
+    }
+
+    /* 标题下划线（默认不可见，悬停时展开） */
     .honor-card .title-underline {
-        background: #fff;
+        width: 0;
+        height: 2px;
+        background: white;
+        margin: 0.5rem 0 0.75rem;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1.2);
     }
-
     .honor-card:hover .title-underline {
         transform: scaleX(1);
     }
 
-    /* 日期标签发光 */
-    .honor-card .date-tag {
-        color: rgba(255,255,255,0.75);
-        transition: color 0.3s, text-shadow 0.3s;
-    }
-    .honor-card:hover .date-tag {
-        color: #fff;
-        text-shadow: 0 0 12px rgba(255,255,255,0.7);
-    }
-
-    /* 查看详情按钮 */
+    /* 查看详情按钮滑入 */
     .honor-card .view-detail {
         opacity: 0;
         transform: translateX(8px);
-        transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+        transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2), color 0.3s;
     }
     .honor-card:hover .view-detail {
         opacity: 1;
@@ -114,20 +169,6 @@
     }
     .honor-card:hover .view-detail svg {
         transform: translateX(3px);
-    }
-
-    /* 图片加载失败占位（带图标） */
-    .honor-card .img-fallback {
-        background: #f1f5f9;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #94a3b8;
-    }
-    .honor-card .img-fallback svg {
-        width: 48px;
-        height: 48px;
-        opacity: 0.5;
     }
 
     /* 标题区域装饰 */
@@ -167,38 +208,38 @@
         </a>
     </div>
 
-    <!-- 卡片网格（带背景点阵） -->
+    <!-- 卡片网格 -->
     {{ $honorPages := where .Site.RegularPages "Section" "honors" }}
     {{ if $honorPages }}
         <div class="honor-grid-bg rounded-2xl p-4 sm:p-6">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {{ range sort $honorPages "Weight" "asc" }}
-                    {{/* 图片路径处理 */}}
                     {{ $img := .Params.featured_image | default "/images/default-honor.jpg" }}
                     {{ $img = $img | relURL }}
 
-                    <div class="honor-card group relative h-80 rounded-2xl overflow-hidden shadow-lg bg-gray-100">
-                        <!-- 图片层 -->
-                        <img 
-                            src="{{ $img }}" 
-                            alt="{{ .Title }}" 
-                            class="card-img absolute inset-0 w-full h-full object-cover"
-                            onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                        >
-                        <!-- 加载失败占位（默认隐藏） -->
-                        <div class="img-fallback absolute inset-0 flex-col gap-3" style="display:none;">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v16l7-5 7 5V3H5z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4m0 4h.01"/>
-                            </svg>
-                            <span class="text-sm font-serif text-gray-500">荣誉证书</span>
+                    <div class="honor-card group rounded-2xl overflow-hidden shadow-md bg-white flex flex-col">
+                        <!-- 图片区域 -->
+                        <div class="card-img-wrapper relative flex-shrink-0 bg-gray-100">
+                            <img 
+                                src="{{ $img }}" 
+                                alt="{{ .Title }}" 
+                                class="card-img absolute inset-0 w-full h-full object-cover"
+                                onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                            >
+                            <div class="img-fallback absolute inset-0 flex-col gap-2" style="display:none;">
+                                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v16l7-5 7 5V3H5z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4m0 4h.01"/>
+                                </svg>
+                                <span class="text-xs font-serif text-gray-400">荣誉证书</span>
+                            </div>
                         </div>
 
-                        <!-- 底部毛玻璃信息栏 -->
-                        <div class="card-info absolute bottom-0 left-0 right-0 text-white">
+                        <!-- 文字信息区 -->
+                        <div class="card-info flex flex-col flex-1">
                             <h3 class="text-lg font-serif font-bold leading-snug line-clamp-2">{{ .Title }}</h3>
                             <div class="title-underline"></div>
-                            <div class="flex items-center justify-between mt-2">
+                            <div class="flex items-center justify-between mt-auto pt-2">
                                 <span class="date-tag text-xs font-medium">{{ .Date.Format "2006-01-02" }}</span>
                                 <span class="view-detail text-xs font-medium flex items-center">
                                     查看详情
@@ -214,7 +255,6 @@
             </div>
         </div>
     {{ else }}
-        <!-- 空状态 -->
         <div class="text-center py-24 bg-gray-50 rounded-2xl">
             <div class="text-5xl mb-4">🏆</div>
             <p class="text-2xl font-serif text-gray-400">荣誉墙暂未收录</p>
@@ -227,7 +267,6 @@
     {{ end }}
 </div>
 
-<!-- 分区视口渐现脚本 -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const observer = new IntersectionObserver((entries, obs) => {
