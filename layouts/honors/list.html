@@ -22,6 +22,7 @@
         animation: honorCardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
         transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2), box-shadow 0.4s;
     }
+    /* 前6个卡片有不同延迟，后续卡片无延迟但依然显示 */
     .honor-card:nth-child(1) { animation-delay: 0.1s; }
     .honor-card:nth-child(2) { animation-delay: 0.2s; }
     .honor-card:nth-child(3) { animation-delay: 0.3s; }
@@ -81,7 +82,6 @@
                 <p class="text-sm text-gray-500 mt-1">记录每一份拼搏与认可</p>
             </div>
         </div>
-        <!-- 可以放分类筛选等，这里留空或返回首页 -->
         <a href="/" class="text-sm font-medium text-gray-400 hover:text-[#A31F34] transition-colors flex items-center group">
             返回首页
             <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -92,11 +92,11 @@
     {{ $honorPages := where .Site.RegularPages "Section" "honors" }}
     {{ if $honorPages }}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {{/* 按权重升序排列（weight 值小的在前），未设 weight 的视为 0 */}}
+            {{/* 按权重升序排列，权重小的在前；无分页限制，所有条目都会显示 */}}
             {{ range sort $honorPages "Weight" "asc" }}
+                {{/* 修复图片路径：直接使用 absURL，确保正确加载 */}}
                 {{ $img := .Params.featured_image | default "/images/default-honor.jpg" }}
-                {{ $img = replaceRE "^.*?/static/" "/" $img }}
-                {{ $img = $img | relURL }}
+                {{ $img = $img | absURL }}
                 <div class="honor-card group relative h-72 md:h-80 rounded-xl overflow-hidden shadow-md bg-gray-200">
                     <!-- 背景图 -->
                     <div class="card-bg absolute inset-0 bg-cover bg-center"
