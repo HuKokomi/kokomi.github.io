@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><script src="/kokomi.github.io/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=kokomi.github.io/livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travels | kokomi_bolg</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '\\[', right: '\\]', display: true},
+                        {left: '$', right: '$', display: false},
+                        {left: '\\(', right: '\\)', display: false}
+                    ]
+                });
+            }
+        });
+    </script>
+    <style>
+        .bg-red { background-color: #8C0000; }
+        .bg-blue { background-color: #1a3a5c; }
+        .text-red { color: #8C0000; }
+        .border-red { border-color: #8C0000; }
+        .text-pku-red { color: #8C0000; }
+        .border-pku-red { border-color: #8C0000; }
+        .bg-pku-red { background-color: #8C0000; }
+        .text-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-white text-gray-800 font-sans antialiased">
+    
+    <header class="fixed top-0 left-0 w-full z-50 text-white shadow-md bg-gradient-to-b from-[#8C0000]/80 to-[#7e0000]/10">
+        
+        <div class="text-xs py-2 px-8 flex justify-end space-x-4">
+            <a href="#" class="hover:text-purple-300 transition">个人简历</a>
+            <span class="text-white/50">|</span>
+            <a href="#" class="hover:text-purple-300 transition">联系邮箱</a>
+            <span class="text-white/50">|</span>
+            <a href="#" class="hover:text-purple-300 transition">下载中心</a>
+            <span class="text-white/50">|</span>
+            <a href="#" class="hover:text-purple-300 transition">English</a>
+        </div>
+        
+        <nav class="px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl font-serif font-bold text-white tracking-wider">kokomi博客</span>
+            </div>
+            <div class="hidden md:flex space-x-10 font-medium text-white/90">
+                <a href="../" class="hover:text-purple-300 pb-1 font-bold">首页</a>
+                <a href="../honors/" class="hover:text-purple-300 pb-1 font-bold">荣誉墙</a>
+                <a href="../research/" class="hover:text-purple-300 pb-1 font-bold">科研动态</a>
+                <a href="../competition/" class="hover:text-purple-300 pb-1 font-bold">竞赛动态</a>
+                <a href="../about/" class="hover:text-purple-300 pb-1 font-bold">关于我</a>
+            </div>
+        </nav>
+    </header>
+
+    
+    <main class="flex-grow pt-28">
+        
+<style>
+     
+    .travel-header {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+    .travel-header h1 {
+        text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+     
+    @keyframes cardUp {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    .travel-card {
+        animation: cardUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+    }
+    .travel-card:nth-child(1) { animation-delay: 0.1s; }
+    .travel-card:nth-child(2) { animation-delay: 0.2s; }
+    .travel-card:nth-child(3) { animation-delay: 0.3s; }
+    .travel-card:nth-child(4) { animation-delay: 0.4s; }
+    .travel-card:nth-child(5) { animation-delay: 0.5s; }
+    .travel-card:nth-child(6) { animation-delay: 0.6s; }
+
+    .travel-card:hover {
+        transform: translateY(-6px) rotateX(1deg);
+        box-shadow: 0 20px 30px -10px rgba(163, 31, 52, 0.3), 0 0 0 2px rgba(163, 31, 52, 0.4);
+    }
+
+     
+    .travel-card .card-img {
+        transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .travel-card:hover .card-img {
+        transform: scale(1.1);
+    }
+
+     
+    .location-tag {
+        background: rgba(163, 31, 52, 0.1);
+        color: #A31F34;
+        border: 1px solid rgba(163, 31, 52, 0.2);
+        transition: all 0.3s;
+    }
+    .travel-card:hover .location-tag {
+        background: #A31F34;
+        color: white;
+    }
+
+     
+    .read-more {
+        opacity: 0;
+        transform: translateX(10px);
+        transition: all 0.4s;
+    }
+    .travel-card:hover .read-more {
+        opacity: 1;
+        transform: translateX(0);
+    }
+</style>
+
+
+<div class="travel-header py-20 px-4 text-center text-white">
+    <div class="max-w-4xl mx-auto">
+        <span class="text-sm font-semibold tracking-widest uppercase opacity-70">Travel Diary</span>
+        <h1 class="text-4xl lg:text-5xl font-serif font-bold mt-3">旅行日记</h1>
+        <p class="mt-4 text-white/60 max-w-xl mx-auto leading-relaxed">
+            用脚步丈量世界，用镜头记录时光。每一次出发，都是与未知的对话。
+        </p>
+    </div>
+</div>
+
+
+<div class="max-w-[1800px] mx-auto px-4 py-16">
+    
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        
+        
+        
+        <div class="travel-card bg-white rounded-xl overflow-hidden shadow-md flex flex-col">
+            
+            <div class="relative h-56 overflow-hidden">
+                <div class="card-img absolute inset-0 bg-cover bg-center"
+                     style="background-image: url('/kokomi.github.io/travel/2026-xian01/e715195c4554b85c3ecaddd2d381660c.jpg');"
+                     onerror="this.onerror=null; this.style.backgroundImage='url(\'data:image/svg+xml,...\')';">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                
+                
+                <div class="absolute bottom-3 left-3 location-tag text-xs font-medium px-2 py-1 rounded-full">
+                    📍 中国·西安
+                </div>
+                
+            </div>
+            
+            <div class="p-5 flex flex-col flex-1">
+                <span class="text-xs text-gray-400">2026-05-31</span>
+                <h3 class="text-xl font-serif font-bold text-gray-900 mt-2 line-clamp-2">长安三日｜西电、雁塔与回民街</h3>
+                
+                <p class="text-sm text-gray-500 mt-2 line-clamp-3 flex-1">三天，从西电到大雁塔，从小雁塔到钟楼，在古都烟火中穿行。</p>
+                
+                <div class="mt-4 flex items-center justify-between">
+                    <span class="read-more text-sm font-medium text-[#A31F34] flex items-center">
+                        阅读全文 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </div>
+            </div>
+            <a href="http://localhost:1313/kokomi.github.io/travel/2026-xian01/" class="absolute inset-0" aria-label="长安三日｜西电、雁塔与回民街"></a>
+        </div>
+        
+        
+        
+        
+        <div class="travel-card bg-white rounded-xl overflow-hidden shadow-md flex flex-col">
+            
+            <div class="relative h-56 overflow-hidden">
+                <div class="card-img absolute inset-0 bg-cover bg-center"
+                     style="background-image: url('/images/default-travel.jpg');"
+                     onerror="this.onerror=null; this.style.backgroundImage='url(\'data:image/svg+xml,...\')';">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                
+                
+            </div>
+            
+            <div class="p-5 flex flex-col flex-1">
+                <span class="text-xs text-gray-400">0001-01-01</span>
+                <h3 class="text-xl font-serif font-bold text-gray-900 mt-2 line-clamp-2"></h3>
+                
+                <div class="mt-4 flex items-center justify-between">
+                    <span class="read-more text-sm font-medium text-[#A31F34] flex items-center">
+                        阅读全文 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </div>
+            </div>
+            <a href="http://localhost:1313/kokomi.github.io/travel/2026-nanjin01/" class="absolute inset-0" aria-label=""></a>
+        </div>
+        
+        
+        
+        
+        <div class="travel-card bg-white rounded-xl overflow-hidden shadow-md flex flex-col">
+            
+            <div class="relative h-56 overflow-hidden">
+                <div class="card-img absolute inset-0 bg-cover bg-center"
+                     style="background-image: url('/images/default-travel.jpg');"
+                     onerror="this.onerror=null; this.style.backgroundImage='url(\'data:image/svg+xml,...\')';">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                
+                
+            </div>
+            
+            <div class="p-5 flex flex-col flex-1">
+                <span class="text-xs text-gray-400">0001-01-01</span>
+                <h3 class="text-xl font-serif font-bold text-gray-900 mt-2 line-clamp-2"></h3>
+                
+                <div class="mt-4 flex items-center justify-between">
+                    <span class="read-more text-sm font-medium text-[#A31F34] flex items-center">
+                        阅读全文 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </div>
+            </div>
+            <a href="http://localhost:1313/kokomi.github.io/travel/2026-wuhu01/" class="absolute inset-0" aria-label=""></a>
+        </div>
+        
+    </div>
+    
+</div>
+
+    </main>
+
+    
+    <footer class="bg-red text-white text-xs py-8 px-8 mt-12 text-center space-y-2">
+        <p class="font-serif tracking-widest text-sm">版权所有 © kokomi博客</p>
+        <p>地址：安徽省滁州市琅琊区</p>
+        <p>技术支持：Hugo + VS Code + Tailwind CSS</p>
+    </footer>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            new Swiper('.heroSwiper', {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true,
+                },
+            });
+        });
+    </script>
+</body>
+</html>

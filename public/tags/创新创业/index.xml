@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>创新创业 on kokomi个人博客</title>
-		<link>http://localhost:1313/tags/%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A/</link>
+		<link>http://localhost:1313/kokomi.github.io/tags/%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A/</link>
 		<description>Recent content in 创新创业 on kokomi个人博客</description>
 		<generator>Hugo</generator>
 		<language>zh-cn</language>
@@ -12,12 +12,12 @@
 		
 			<lastBuildDate>Sat, 20 Jun 2026 00:00:00 +0000</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/tags/%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:1313/kokomi.github.io/tags/%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>灯高碳远——新一代智慧路灯助力城市低碳建设荣获“挑战杯”全国铜奖</title>
-				<link>http://localhost:1313/competition/tzb2024-xa/</link>
+				<link>http://localhost:1313/kokomi.github.io/competition/tzb2024-xa/</link>
 				<pubDate>Sat, 20 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/competition/tzb2024-xa/</guid>
+				<guid>http://localhost:1313/kokomi.github.io/competition/tzb2024-xa/</guid>
 				<description>项目“灯高&amp;rsquo;碳&amp;rsquo;远”荣获第十四届“挑战杯”中国大学生创业计划竞赛国家级铜奖、安徽省金奖，通过自研“耀心”算法、分离式电源与快捷维修系统，解决传统路灯能耗高、寿命短、维修难三大痛点。</description>
 			</item>
 	</channel>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><script src="/kokomi.github.io/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=kokomi.github.io/livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>长安三日｜西电、雁塔与回民街 | kokomi_bolg</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '\\[', right: '\\]', display: true},
+                        {left: '$', right: '$', display: false},
+                        {left: '\\(', right: '\\)', display: false}
+                    ]
+                });
+            }
+        });
+    </script>
+    <style>
+        .bg-red { background-color: #8C0000; }
+        .bg-blue { background-color: #1a3a5c; }
+        .text-red { color: #8C0000; }
+        .border-red { border-color: #8C0000; }
+        .text-pku-red { color: #8C0000; }
+        .border-pku-red { border-color: #8C0000; }
+        .bg-pku-red { background-color: #8C0000; }
+        .text-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-white text-gray-800 font-sans antialiased">
+    
+    <header class="fixed top-0 left-0 w-full z-50 text-white shadow-md bg-gradient-to-b from-[#8C0000]/80 to-[#7e0000]/10">
+        
+        <div class="text-xs py-2 px-8 flex justify-end space-x-4">
+            <a href="#" class="hover:text-purple-300 transition">个人简历</a>
+            <span class="text-white/50">|</span>
+            <a href="#" class="hover:text-purple-300 transition">联系邮箱</a>
+            <span class="text-white/50">|</span>
+            <a href="#" class="hover:text-purple-300 transition">下载中心</a>
+            <span class="text-white/50">|</span>
+            <a href="#" class="hover:text-purple-300 transition">English</a>
+        </div>
+        
+        <nav class="px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl font-serif font-bold text-white tracking-wider">kokomi博客</span>
+            </div>
+            <div class="hidden md:flex space-x-10 font-medium text-white/90">
+                <a href="../../" class="hover:text-purple-300 pb-1 font-bold">首页</a>
+                <a href="../../honors/" class="hover:text-purple-300 pb-1 font-bold">荣誉墙</a>
+                <a href="../../research/" class="hover:text-purple-300 pb-1 font-bold">科研动态</a>
+                <a href="../../competition/" class="hover:text-purple-300 pb-1 font-bold">竞赛动态</a>
+                <a href="../../about/" class="hover:text-purple-300 pb-1 font-bold">关于我</a>
+            </div>
+        </nav>
+    </header>
+
+    
+    <main class="flex-grow pt-28">
+        
+<style>
+     
+    .hero-image {
+        background-size: cover;
+        background-position: center;
+        height: 60vh;
+        position: relative;
+    }
+    .hero-image::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(15, 23, 42, 0.8) 0%, transparent 60%);
+    }
+    .hero-content {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: white;
+        z-index: 2;
+        width: 90%;
+    }
+    .hero-content h1 {
+        text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    .meta-dot {
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        background: rgba(255,255,255,0.6);
+        border-radius: 50%;
+        margin: 0 8px;
+    }
+     
+    .article-body {
+        font-family: "Georgia", serif;
+        font-size: 1.1rem;
+        line-height: 1.9;
+        color: #334155;
+    }
+    .article-body img {
+        border-radius: 12px;
+        box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+        margin: 2rem auto;        
+        display: block;           
+        transition: transform 0.3s ease;
+    }
+    .article-body img:hover {
+        transform: scale(1.02);
+    }
+    .article-body p {
+        margin-bottom: 1.5rem;
+    }
+     
+    .location-badge {
+        background: rgba(163, 31, 52, 0.08);
+        border: 1px solid rgba(163, 31, 52, 0.15);
+        color: #A31F34;
+        padding: 0.25rem 1rem;
+        border-radius: 999px;
+        font-size: 0.9rem;
+    }
+     
+    .back-btn {
+        transition: all 0.3s;
+    }
+    .back-btn:hover {
+        background: #A31F34;
+        color: white;
+        border-color: transparent;
+    }
+
+     
+    .article-body figure {
+        text-align: center;
+        margin: 2rem auto;
+    }
+    .article-body figure img {
+        display: inline-block;  
+        margin-left: auto;
+        margin-right: auto;
+    }
+     
+    .article-body figcaption {
+        text-align: center;
+        color: #64748b;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+    }
+</style>
+
+
+
+
+
+
+<div class="hero-image" style="background-image: url('/kokomi.github.io/travel/2026-xian01/e715195c4554b85c3ecaddd2d381660c.jpg');"
+     onerror="this.onerror=null; this.style.backgroundImage='url(\'data:image/svg+xml,...\')';">
+    
+    <div class="hero-content">
+        <h1 class="text-3xl md:text-5xl font-serif font-bold leading-tight">长安三日｜西电、雁塔与回民街</h1>
+        <div class="mt-6 flex items-center justify-center space-x-2 text-white/80 text-sm">
+            
+            <span class="location-badge">📍 中国·西安</span>
+            
+            <span class="meta-dot"></span>
+            <time>2026年05月31日</time>
+            
+            <span class="meta-dot"></span>
+            <span>阅读 1 分钟</span>
+            
+        </div>
+    </div>
+</div>
+
+
+<article class="max-w-3xl mx-auto px-4 py-12 -mt-10 relative z-10 bg-white rounded-t-3xl shadow-lg">
+    <div class="flex items-center mb-8">
+        <a href="../../travel/" class="back-btn inline-flex items-center text-sm text-gray-500 border border-gray-200 rounded-full px-4 py-2 hover:shadow-md">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            返回旅行日记
+        </a>
+    </div>
+
+    <div class="article-body">
+        <p><strong>5月29日</strong><br>
+上午到<strong>西安电子科技大学</strong>交流。午后去<strong>大雁塔</strong>，看玄奘译经处。晚上逛<strong>大唐不夜城</strong>，灯火如昼，人潮涌动。</p>
+<figure><img src="../../travel/2026-xian01/04606cf7281496cfb1c59aa4275d73f6.jpg" width="80%"><figcaption>
+			<h4>大唐不夜城</h4>
+		</figcaption>
+</figure>
+
+<figure><img src="../../travel/2026-xian01/2f3b7fb96c97e2be98f9b843a6b37e5a.jpg" width="80%"><figcaption>
+			<h4>大雁塔</h4>
+		</figcaption>
+</figure>
+
+<p><strong>5月30日</strong><br>
+清晨看<strong>小雁塔</strong>，塔身裂纹是千年的痕迹。随后逛<strong>西安博物院</strong>，唐代金器精致。下午转<strong>小寨</strong>，肉夹馍收尾。</p>
+<figure><img src="../../travel/2026-xian01/30c57e91622a3cfb2a8e4b786e0ed262.jpg" width="80%"><figcaption>
+			<h4>子午路肉夹馍</h4>
+		</figcaption>
+</figure>
+
+<p><strong>5月31日</strong><br>
+登<strong>钟楼</strong>，听整点钟声，俯瞰四方街。中午扎进<strong>回民街</strong>，肉夹馍、羊肉泡馍一路吃过去。</p>
+<figure><img src="../../travel/2026-xian01/f095c01c73e72dd326b0f469ce1a0aac.jpg" width="80%"><figcaption>
+			<h4>孙记羊肉泡馍</h4>
+		</figcaption>
+</figure>
+
+<figure><img src="../../travel/2026-xian01/75b0a18b532602e58002f02c6024466b.jpg" width="80%"><figcaption>
+			<h4>茶话弄长安荔枝</h4>
+		</figcaption>
+</figure>
+
+<p>三天太短，长安太厚。留点遗憾，下次再来。</p>
+
+    </div>
+
+    
+    <div class="mt-16 pt-8 border-t border-gray-100 flex justify-between text-sm">
+        
+        <a href="http://localhost:1313/kokomi.github.io/travel/2026-nanjin01/" class="group flex items-center text-gray-500 hover:text-[#A31F34] transition-colors">
+            <svg class="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            <span class="line-clamp-1"></span>
+        </a>
+        
+        
+    </div>
+</article>
+
+    </main>
+
+    
+    <footer class="bg-red text-white text-xs py-8 px-8 mt-12 text-center space-y-2">
+        <p class="font-serif tracking-widest text-sm">版权所有 © kokomi博客</p>
+        <p>地址：安徽省滁州市琅琊区</p>
+        <p>技术支持：Hugo + VS Code + Tailwind CSS</p>
+    </footer>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            new Swiper('.heroSwiper', {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true,
+                },
+            });
+        });
+    </script>
+</body>
+</html>

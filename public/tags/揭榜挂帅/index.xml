@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>揭榜挂帅 on kokomi个人博客</title>
-		<link>http://localhost:1313/tags/%E6%8F%AD%E6%A6%9C%E6%8C%82%E5%B8%85/</link>
+		<link>http://localhost:1313/kokomi.github.io/tags/%E6%8F%AD%E6%A6%9C%E6%8C%82%E5%B8%85/</link>
 		<description>Recent content in 揭榜挂帅 on kokomi个人博客</description>
 		<generator>Hugo</generator>
 		<language>zh-cn</language>
@@ -12,12 +12,12 @@
 		
 			<lastBuildDate>Sat, 20 Jun 2026 00:00:00 +0000</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/tags/%E6%8F%AD%E6%A6%9C%E6%8C%82%E5%B8%85/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:1313/kokomi.github.io/tags/%E6%8F%AD%E6%A6%9C%E6%8C%82%E5%B8%85/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>指导科创项目荣获第十八届“挑战杯”揭榜挂帅专项赛全国奖项</title>
-				<link>http://localhost:1313/competition/tzb2025-cq/</link>
+				<link>http://localhost:1313/kokomi.github.io/competition/tzb2025-cq/</link>
 				<pubDate>Sat, 20 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/competition/tzb2025-cq/</guid>
+				<guid>http://localhost:1313/kokomi.github.io/competition/tzb2025-cq/</guid>
 				<description>在第十八届“挑战杯”全国大学生课外学术科技作品竞赛“揭榜挂帅”专项赛中，本人参与指导的三个项目分别获得全国二等奖和两项优胜奖，涉及量子多体系统、低空雷达识别与多智能体决策等前沿方向。</description>
 			</item>
 	</channel>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>大唐不夜城 on kokomi个人博客</title>
+		<link>http://localhost:1313/kokomi.github.io/tags/%E5%A4%A7%E5%94%90%E4%B8%8D%E5%A4%9C%E5%9F%8E/</link>
+		<description>Recent content in 大唐不夜城 on kokomi个人博客</description>
+		<generator>Hugo</generator>
+		<language>zh-cn</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 31 May 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/kokomi.github.io/tags/%E5%A4%A7%E5%94%90%E4%B8%8D%E5%A4%9C%E5%9F%8E/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>长安三日｜西电、雁塔与回民街</title>
+				<link>http://localhost:1313/kokomi.github.io/travel/2026-xian01/</link>
+				<pubDate>Sun, 31 May 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/kokomi.github.io/travel/2026-xian01/</guid>
+				<description>三天，从西电到大雁塔，从小雁塔到钟楼，在古都烟火中穿行。</description>
+			</item>
+	</channel>
+</rss>
