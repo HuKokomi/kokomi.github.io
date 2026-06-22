@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honors | kokomi_bolg</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '\\[', right: '\\]', display: true},  
+                        {left: '$', right: '$', display: false},     
+                        {left: '\\(', right: '\\)', display: false}  
+                    ]
+                });
+            }
+        });
+    </script>
+    <style>
+        .bg-red { background-color: #8C0000; }
+        .bg-blue { background-color: #1a3a5c; }
+        .text-red { color: #8C0000; }
+        .border-red { border-color: #8C0000; }
+        .text-pku-red { color: #8C0000; }
+        .border-pku-red { border-color: #8C0000; }
+        .bg-pku-red { background-color: #8C0000; }
+        .text-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+    </style>
+</head>
+
+<header class="fixed top-0 left-0 w-full z-50 text-white shadow-md bg-gradient-to-b from-[#8C0000]/80 to-[#7e0000]/10">
+    
+    <div class="text-xs py-2 px-8 flex justify-end space-x-4">
+        <a href="#" class="hover:text-purple-300 transition">个人简历</a>
+        <span class="text-white/50">|</span>
+        <a href="#" class="hover:text-purple-300 transition">联系邮箱</a>
+        <span class="text-white/50">|</span>
+        <a href="#" class="hover:text-purple-300 transition">下载中心</a>
+        <span class="text-white/50">|</span>
+        <a href="#" class="hover:text-purple-300 transition">English</a>
+    </div>
+    
+    <nav class="px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <span class="text-2xl font-serif font-bold text-white tracking-wider">kokomi博客</span>
+        </div>
+        <div class="hidden md:flex space-x-10 font-medium text-white/90">
+            <a href="../" class="hover:text-purple-300 pb-1 font-bold">首页</a>
+            <a href="../honors/" class="hover:text-purple-300 pb-1 font-bold">荣誉墙</a>
+            <a href="../research/" class="hover:text-purple-300 pb-1 font-bold">科研动态</a>
+            <a href="../competition/" class="hover:text-purple-300 pb-1 font-bold">竞赛动态</a>
+            <a href="../about/" class="hover:text-purple-300 pb-1 font-bold">关于我</a>
+        </div>
+    </nav>
+</header>
+
+    
+    <main class="flex-grow">
+        
+
+<style>
+     
+    .honor-fade-section {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+    }
+    .honor-fade-section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+     
+    @keyframes honorCardIn {
+        0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+        100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .honor-card {
+        animation: honorCardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2), box-shadow 0.4s;
+    }
+     
+    .honor-card:nth-child(1) { animation-delay: 0.1s; }
+    .honor-card:nth-child(2) { animation-delay: 0.2s; }
+    .honor-card:nth-child(3) { animation-delay: 0.3s; }
+    .honor-card:nth-child(4) { animation-delay: 0.4s; }
+    .honor-card:nth-child(5) { animation-delay: 0.5s; }
+    .honor-card:nth-child(6) { animation-delay: 0.6s; }
+
+     
+    .honor-card:hover {
+        transform: translateY(-8px) rotateX(1deg) rotateY(-1deg);
+        box-shadow: 0 25px 40px -12px rgba(163, 31, 52, 0.25), 0 0 0 2px rgba(163, 31, 52, 0.3);
+    }
+
+     
+    .honor-card .card-bg {
+        transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .honor-card:hover .card-bg {
+        transform: scale(1.15);
+    }
+
+     
+    .honor-card .card-info {
+        transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+    }
+    .honor-card:hover .card-info {
+        transform: translateY(-8px);
+    }
+
+     
+    .honor-card .title-underline {
+        width: 0;
+        height: 2px;
+        background: #A31F34;
+        transition: width 0.5s ease;
+    }
+    .honor-card:hover .title-underline {
+        width: 100%;
+    }
+
+     
+    .honor-card:hover .date-tag {
+        color: rgba(255,255,255,1) !important;
+        text-shadow: 0 0 8px rgba(255,255,255,0.6);
+    }
+</style>
+
+
+<div class="max-w-[1800px] mx-auto px-4 py-12 honor-fade-section">
+    
+    <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-10">
+        <div class="flex items-center gap-3">
+            <span class="w-1 h-8 bg-[#A31F34] rounded-full"></span>
+            <div>
+                <span class="text-xs font-semibold text-[#A31F34] tracking-widest uppercase">Honors</span>
+                <h1 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900">荣誉墙</h1>
+                <p class="text-sm text-gray-500 mt-1">记录每一份拼搏与认可</p>
+            </div>
+        </div>
+        <a href="../" class="text-sm font-medium text-gray-400 hover:text-[#A31F34] transition-colors flex items-center group">
+            返回首页
+            <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    
+    
+    
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            
+            
+                
+                
+                
+                <div class="honor-card group relative h-72 md:h-80 rounded-xl overflow-hidden shadow-md bg-gray-200">
+                    
+                    <div class="card-bg absolute inset-0 bg-cover bg-center"
+                         style="background-image: url('https://hukokomi.github.io/honors/ff2526fa92cea81335820f34d7f48753.png');"
+                         onerror="this.onerror=null; this.style.backgroundImage='url(\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%2218%22%3E%E8%8D%A3%E8%AA%89%3C/text%3E%3C/svg%3E\')';">
+                    </div>
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    
+                    <div class="card-info absolute bottom-0 left-0 right-0 p-5 text-white">
+                        <h3 class="text-lg font-serif font-bold leading-snug line-clamp-2 mb-1">第十九届&#34;挑战杯&#34;全国大学生课外学术科技作品竞赛&#34;人工智能&#43;&#34;专项赛特等奖</h3>
+                        <div class="title-underline mb-2"></div>
+                        <div class="flex items-center justify-between">
+                            <span class="date-tag text-xs text-white/70 transition-all duration-300">2024-12-01</span>
+                            <span class="text-xs font-medium flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-x-2 group-hover:translate-x-0 transition-transform">
+                                查看详情
+                                <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://hukokomi.github.io/kokomi.github.io/honors/tzb-202502/" class="absolute inset-0" aria-label="第十九届&#34;挑战杯&#34;全国大学生课外学术科技作品竞赛&#34;人工智能&#43;&#34;专项赛特等奖"></a>
+                </div>
+            
+                
+                
+                
+                <div class="honor-card group relative h-72 md:h-80 rounded-xl overflow-hidden shadow-md bg-gray-200">
+                    
+                    <div class="card-bg absolute inset-0 bg-cover bg-center"
+                         style="background-image: url('https://hukokomi.github.io/honors/f8e975e7-7286-4211-a83d-ae7e4fb38499.png');"
+                         onerror="this.onerror=null; this.style.backgroundImage='url(\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%2218%22%3E%E8%8D%A3%E8%AA%89%3C/text%3E%3C/svg%3E\')';">
+                    </div>
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    
+                    <div class="card-info absolute bottom-0 left-0 right-0 p-5 text-white">
+                        <h3 class="text-lg font-serif font-bold leading-snug line-clamp-2 mb-1">第十四届&#34;挑战杯&#34;中国大学生创业计划竞赛铜奖</h3>
+                        <div class="title-underline mb-2"></div>
+                        <div class="flex items-center justify-between">
+                            <span class="date-tag text-xs text-white/70 transition-all duration-300">2024-08-01</span>
+                            <span class="text-xs font-medium flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-x-2 group-hover:translate-x-0 transition-transform">
+                                查看详情
+                                <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://hukokomi.github.io/kokomi.github.io/honors/tzb-202402/" class="absolute inset-0" aria-label="第十四届&#34;挑战杯&#34;中国大学生创业计划竞赛铜奖"></a>
+                </div>
+            
+                
+                
+                
+                <div class="honor-card group relative h-72 md:h-80 rounded-xl overflow-hidden shadow-md bg-gray-200">
+                    
+                    <div class="card-bg absolute inset-0 bg-cover bg-center"
+                         style="background-image: url('https://hukokomi.github.io/honors/6e403c4c-30a9-4cc2-9e4a-863a0ac95043.png');"
+                         onerror="this.onerror=null; this.style.backgroundImage='url(\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%2218%22%3E%E8%8D%A3%E8%AA%89%3C/text%3E%3C/svg%3E\')';">
+                    </div>
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                    
+                    <div class="card-info absolute bottom-0 left-0 right-0 p-5 text-white">
+                        <h3 class="text-lg font-serif font-bold leading-snug line-clamp-2 mb-1">第十一届&#34;挑战杯&#34;安徽省大学生创业计划竞赛金奖</h3>
+                        <div class="title-underline mb-2"></div>
+                        <div class="flex items-center justify-between">
+                            <span class="date-tag text-xs text-white/70 transition-all duration-300">2024-12-01</span>
+                            <span class="text-xs font-medium flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-x-2 group-hover:translate-x-0 transition-transform">
+                                查看详情
+                                <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://hukokomi.github.io/kokomi.github.io/honors/tzb-202401/" class="absolute inset-0" aria-label="第十一届&#34;挑战杯&#34;安徽省大学生创业计划竞赛金奖"></a>
+                </div>
+            
+        </div>
+    
+</div>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.honor-fade-section').forEach(el => observer.observe(el));
+    });
+</script>
+
+
+    </main>
+
+    
+    <footer class="bg-red text-white text-xs py-8 px-8 mt-12 text-center space-y-2">
+        <p class="font-serif tracking-widest text-sm">版权所有 © kokomi博客</p>
+        <p>地址：安徽省滁州市琅琊区</p>
+        <p>技术支持：Hugo + VS Code + Tailwind CSS</p>
+    </footer>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            new Swiper('.heroSwiper', {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true,
+                },
+            });
+        });
+    </script>
+</body>
+</html>

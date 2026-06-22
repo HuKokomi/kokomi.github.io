@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>科技发明 on kokomi个人博客</title>
-		<link>http://localhost:1313/kokomi.github.io/tags/%E7%A7%91%E6%8A%80%E5%8F%91%E6%98%8E/</link>
+		<link>https://hukokomi.github.io/kokomi.github.io/tags/%E7%A7%91%E6%8A%80%E5%8F%91%E6%98%8E/</link>
 		<description>Recent content in 科技发明 on kokomi个人博客</description>
 		<generator>Hugo</generator>
 		<language>zh-cn</language>
@@ -12,12 +12,12 @@
 		
 			<lastBuildDate>Sun, 21 Jun 2026 00:00:00 +0000</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/kokomi.github.io/tags/%E7%A7%91%E6%8A%80%E5%8F%91%E6%98%8E/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://hukokomi.github.io/kokomi.github.io/tags/%E7%A7%91%E6%8A%80%E5%8F%91%E6%98%8E/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>挑战杯科技类竞赛备赛精要——基于赛事底层逻辑与汇报内容构建的系统性研析</title>
-				<link>http://localhost:1313/kokomi.github.io/research/challengecup/</link>
+				<link>https://hukokomi.github.io/kokomi.github.io/research/challengecup/</link>
 				<pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/kokomi.github.io/research/challengecup/</guid>
+				<guid>https://hukokomi.github.io/kokomi.github.io/research/challengecup/</guid>
 				<description>系统梳理“挑战杯”科技发明类竞赛的底层评审逻辑与汇报构建方法论，提出“闭环理念”、“学科力量”、“比较逻辑”、“市场思维”四大核心线索，并详解“讲故事、说技术、亮产品、谋商业、秀成就、上价值”的内容制作框架，为参赛团队提供兼具理论深度与实践指导意义的备赛指南。</description>
 			</item>
 	</channel>

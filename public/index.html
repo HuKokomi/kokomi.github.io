@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<meta name="generator" content="Hugo 0.163.3"><script src="/kokomi.github.io/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=kokomi.github.io/livereload" data-no-instant defer></script>
+	<meta name="generator" content="Hugo 0.163.3">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>kokomi个人博客 | kokomi_bolg</title>
@@ -20,9 +20,9 @@
                 renderMathInElement(document.body, {
                     delimiters: [
                         {left: '$$', right: '$$', display: true},
-                        {left: '\\[', right: '\\]', display: true},
-                        {left: '$', right: '$', display: false},
-                        {left: '\\(', right: '\\)', display: false}
+                        {left: '\\[', right: '\\]', display: true},  
+                        {left: '$', right: '$', display: false},     
+                        {left: '\\(', right: '\\)', display: false}  
                     ]
                 });
             }
@@ -39,36 +39,35 @@
         .text-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
     </style>
 </head>
-<body class="min-h-screen flex flex-col bg-white text-gray-800 font-sans antialiased">
+
+<header class="fixed top-0 left-0 w-full z-50 text-white shadow-md bg-gradient-to-b from-[#8C0000]/80 to-[#7e0000]/10">
     
-    <header class="fixed top-0 left-0 w-full z-50 text-white shadow-md bg-gradient-to-b from-[#8C0000]/80 to-[#7e0000]/10">
-        
-        <div class="text-xs py-2 px-8 flex justify-end space-x-4">
-            <a href="#" class="hover:text-purple-300 transition">个人简历</a>
-            <span class="text-white/50">|</span>
-            <a href="#" class="hover:text-purple-300 transition">联系邮箱</a>
-            <span class="text-white/50">|</span>
-            <a href="#" class="hover:text-purple-300 transition">下载中心</a>
-            <span class="text-white/50">|</span>
-            <a href="#" class="hover:text-purple-300 transition">English</a>
+    <div class="text-xs py-2 px-8 flex justify-end space-x-4">
+        <a href="#" class="hover:text-purple-300 transition">个人简历</a>
+        <span class="text-white/50">|</span>
+        <a href="#" class="hover:text-purple-300 transition">联系邮箱</a>
+        <span class="text-white/50">|</span>
+        <a href="#" class="hover:text-purple-300 transition">下载中心</a>
+        <span class="text-white/50">|</span>
+        <a href="#" class="hover:text-purple-300 transition">English</a>
+    </div>
+    
+    <nav class="px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <span class="text-2xl font-serif font-bold text-white tracking-wider">kokomi博客</span>
         </div>
-        
-        <nav class="px-8 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <span class="text-2xl font-serif font-bold text-white tracking-wider">kokomi博客</span>
-            </div>
-            <div class="hidden md:flex space-x-10 font-medium text-white/90">
-                <a href="./" class="hover:text-purple-300 pb-1 font-bold">首页</a>
-                <a href="./honors/" class="hover:text-purple-300 pb-1 font-bold">荣誉墙</a>
-                <a href="./research/" class="hover:text-purple-300 pb-1 font-bold">科研动态</a>
-                <a href="./competition/" class="hover:text-purple-300 pb-1 font-bold">竞赛动态</a>
-                <a href="./about/" class="hover:text-purple-300 pb-1 font-bold">关于我</a>
-            </div>
-        </nav>
-    </header>
+        <div class="hidden md:flex space-x-10 font-medium text-white/90">
+            <a href="./" class="hover:text-purple-300 pb-1 font-bold">首页</a>
+            <a href="./honors/" class="hover:text-purple-300 pb-1 font-bold">荣誉墙</a>
+            <a href="./research/" class="hover:text-purple-300 pb-1 font-bold">科研动态</a>
+            <a href="./competition/" class="hover:text-purple-300 pb-1 font-bold">竞赛动态</a>
+            <a href="./about/" class="hover:text-purple-300 pb-1 font-bold">关于我</a>
+        </div>
+    </nav>
+</header>
 
     
-    <main class="flex-grow pt-28">
+    <main class="flex-grow">
         
 
 <style>
@@ -183,8 +182,8 @@
                     
                     <div class="competition-item flex items-center gap-4 p-3 rounded-lg border border-transparent"
                          data-image="/kokomi.github.io/competition/tiaozhanbei202502/3a9b6093e13d3d1a70d0ff7ff2f85a5b.jpg"
-                         data-link="http://localhost:1313/kokomi.github.io/competition/tzb-2025-nj/"
-                         onclick="window.location='http:\/\/localhost:1313\/kokomi.github.io\/competition\/tzb-2025-nj\/'">
+                         data-link="https://hukokomi.github.io/kokomi.github.io/competition/tzb-2025-nj/"
+                         onclick="window.location='https:\/\/hukokomi.github.io\/kokomi.github.io\/competition\/tzb-2025-nj\/'">
                         <div class="text-content flex-1 min-w-0">
                             <div class="text-title text-sm font-medium text-gray-800 line-clamp-2">便携式慢阻肺AI监测设备荣获“挑战杯”人工智能&#43;专项赛全国特等奖</div>
                             <div class="text-date text-xs text-gray-400 mt-1">2026-06-20</div>
@@ -198,8 +197,8 @@
                     
                     <div class="competition-item flex items-center gap-4 p-3 rounded-lg border border-transparent"
                          data-image="/kokomi.github.io/competition/tiaozhanbei202401/8165cd63f4911e9ca028234b655a4f87.jpg"
-                         data-link="http://localhost:1313/kokomi.github.io/competition/tzb2024-xa/"
-                         onclick="window.location='http:\/\/localhost:1313\/kokomi.github.io\/competition\/tzb2024-xa\/'">
+                         data-link="https://hukokomi.github.io/kokomi.github.io/competition/tzb2024-xa/"
+                         onclick="window.location='https:\/\/hukokomi.github.io\/kokomi.github.io\/competition\/tzb2024-xa\/'">
                         <div class="text-content flex-1 min-w-0">
                             <div class="text-title text-sm font-medium text-gray-800 line-clamp-2">灯高碳远——新一代智慧路灯助力城市低碳建设荣获“挑战杯”全国铜奖</div>
                             <div class="text-date text-xs text-gray-400 mt-1">2026-06-20</div>
@@ -213,8 +212,8 @@
                     
                     <div class="competition-item flex items-center gap-4 p-3 rounded-lg border border-transparent"
                          data-image="/kokomi.github.io/competition/tiaozhenbei202501/0938eb692da1fb69fb3b2cf5763b682c.jpg"
-                         data-link="http://localhost:1313/kokomi.github.io/competition/tzb2025-cq/"
-                         onclick="window.location='http:\/\/localhost:1313\/kokomi.github.io\/competition\/tzb2025-cq\/'">
+                         data-link="https://hukokomi.github.io/kokomi.github.io/competition/tzb2025-cq/"
+                         onclick="window.location='https:\/\/hukokomi.github.io\/kokomi.github.io\/competition\/tzb2025-cq\/'">
                         <div class="text-content flex-1 min-w-0">
                             <div class="text-title text-sm font-medium text-gray-800 line-clamp-2">指导科创项目荣获第十八届“挑战杯”揭榜挂帅专项赛全国奖项</div>
                             <div class="text-date text-xs text-gray-400 mt-1">2026-06-20</div>
@@ -254,7 +253,7 @@
                 
                 
                 
-                <a href="http://localhost:1313/kokomi.github.io/research/thesis/" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
+                <a href="https://hukokomi.github.io/kokomi.github.io/research/thesis/" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
                     <div class="aspect-[16/9] bg-gray-200 overflow-hidden relative">
                         <img src="./db_imsges/Research/e480f8c4-fda0-4d2d-880d-58a60730b4cf.png" alt="基于Carla的智能车辆跟车场景自适应巡航研究" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                              onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%2216%22%3E%E7%A7%91%E7%A0%94%E5%9B%BE%E7%89%87%3C/text%3E%3C/svg%3E';">
@@ -268,7 +267,7 @@
                 
                 
                 
-                <a href="http://localhost:1313/kokomi.github.io/research/challengecup/" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
+                <a href="https://hukokomi.github.io/kokomi.github.io/research/challengecup/" class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden border border-gray-100 hover:border-[#A31F34]/30 hover:-translate-y-2">
                     <div class="aspect-[16/9] bg-gray-200 overflow-hidden relative">
                         <img src="./research/ChallengeCup/6edb786f5d1c7117465584aeca91ba68.png" alt="挑战杯科技类竞赛备赛精要——基于赛事底层逻辑与汇报内容构建的系统性研析" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                              onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%2216%22%3E%E7%A7%91%E7%A0%94%E5%9B%BE%E7%89%87%3C/text%3E%3C/svg%3E';">
@@ -382,7 +381,7 @@
                         </div>
                     </div>
                     
-                    <a href="http://localhost:1313/kokomi.github.io/travel/2026-xian01/" class="absolute inset-0" aria-label="长安三日｜西电、雁塔与回民街"></a>
+                    <a href="https://hukokomi.github.io/kokomi.github.io/travel/2026-xian01/" class="absolute inset-0" aria-label="长安三日｜西电、雁塔与回民街"></a>
                 </div>
                 
                 
@@ -409,7 +408,7 @@
                         </div>
                     </div>
                     
-                    <a href="http://localhost:1313/kokomi.github.io/travel/2026-nanjin01/" class="absolute inset-0" aria-label=""></a>
+                    <a href="https://hukokomi.github.io/kokomi.github.io/travel/2026-nanjin01/" class="absolute inset-0" aria-label=""></a>
                 </div>
                 
                 
@@ -436,7 +435,7 @@
                         </div>
                     </div>
                     
-                    <a href="http://localhost:1313/kokomi.github.io/travel/2026-wuhu01/" class="absolute inset-0" aria-label=""></a>
+                    <a href="https://hukokomi.github.io/kokomi.github.io/travel/2026-wuhu01/" class="absolute inset-0" aria-label=""></a>
                 </div>
                 
             </div>
