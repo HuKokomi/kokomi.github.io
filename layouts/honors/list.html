@@ -92,7 +92,8 @@
     {{ $honorPages := where .Site.RegularPages "Section" "honors" }}
     {{ if $honorPages }}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {{ range $honorPages }}
+            {{/* 按权重升序排列（weight 值小的在前），未设 weight 的视为 0 */}}
+            {{ range sort $honorPages "Weight" "asc" }}
                 {{ $img := .Params.featured_image | default "/images/default-honor.jpg" }}
                 {{ $img = replaceRE "^.*?/static/" "/" $img }}
                 {{ $img = $img | relURL }}
